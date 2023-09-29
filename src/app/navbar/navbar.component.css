@@ -1,0 +1,11 @@
+.navbar {
+  transition: top 0.3s ease;
+  transition: bottom 0.3s ease;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: block;
+  }
+}
