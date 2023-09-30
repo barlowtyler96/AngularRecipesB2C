@@ -12,6 +12,8 @@ import { BrowseComponent } from './pages/browse/browse.component';
 import { ShareComponent } from './pages/share/share.component';
 import { YourSharesComponent } from './pages/your-shares/your-shares.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { RecipeCardsComponent } from './components/recipe-cards/recipe-cards.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
     BrowseComponent,
     ShareComponent,
     YourSharesComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    PaginationComponent,
+    RecipeCardsComponent
   ],
   imports: [
     BrowserModule,
