@@ -9,11 +9,17 @@ exports.__esModule = true;
 exports.AppModule = void 0;
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var http_1 = require("@angular/common/http");
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
 var layout_component_1 = require("./layout/layout.component");
 var sidebar_component_1 = require("./sidebar/sidebar.component");
 var navbar_component_1 = require("./navbar/navbar.component");
+var home_component_1 = require("./pages/home/home.component");
+var browse_component_1 = require("./pages/browse/browse.component");
+var share_component_1 = require("./pages/share/share.component");
+var your_shares_component_1 = require("./pages/your-shares/your-shares.component");
+var favorites_component_1 = require("./pages/favorites/favorites.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -23,11 +29,17 @@ var AppModule = /** @class */ (function () {
                 app_component_1.AppComponent,
                 layout_component_1.LayoutComponent,
                 sidebar_component_1.SidebarComponent,
-                navbar_component_1.NavbarComponent
+                navbar_component_1.NavbarComponent,
+                home_component_1.HomeComponent,
+                browse_component_1.BrowseComponent,
+                share_component_1.ShareComponent,
+                your_shares_component_1.YourSharesComponent,
+                favorites_component_1.FavoritesComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
-                app_routing_module_1.AppRoutingModule
+                app_routing_module_1.AppRoutingModule,
+                http_1.HttpClientModule
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]
