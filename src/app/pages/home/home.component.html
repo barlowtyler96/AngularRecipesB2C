@@ -1,1 +1,9 @@
-<p>home works!</p>
+<app-recipe-cards></app-recipe-cards>
+
+<app-pagination
+  [totalCount]="recipePagination.totalCount"
+  [pageSize]="recipePagination.pageSize"
+  [currentPageNumber]="recipePagination.currentPageNumber"
+  [totalPages]="recipePagination.totalPages"
+  (pageChange)="loadData($event)"
+></app-pagination>
