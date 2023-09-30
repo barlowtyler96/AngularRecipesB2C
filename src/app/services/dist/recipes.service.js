@@ -14,7 +14,7 @@ var RecipesService = /** @class */ (function () {
         this.http = http;
     }
     RecipesService.prototype.getRecipePagination = function (page, pageSize) {
-        return this.http.get(environment_development_1.environment.apiBaseUrl + "/recipes/recent?page=" + page + "&pageSize=" + pageSize);
+        return this.http.get(environment_development_1.environment.apiBaseUrl + "recipes/recent?page=" + page + "&pageSize=" + pageSize);
     };
     RecipesService = __decorate([
         core_1.Injectable({

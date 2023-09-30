@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RecipePagination } from '../models/recipe'
+import { RecipePaginationImpl } from '../models/recipe'
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { Observable } from 'rxjs/internal/Observable';
@@ -9,8 +9,8 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class RecipesService {
 
-  public getRecipePagination(page: number, pageSize:number): Observable<RecipePagination> {
-    return this.http.get<RecipePagination>(`${environment.apiBaseUrl}/recipes/recent?page=${page}&pageSize=${pageSize}`)
+  public getRecipePagination(page: number, pageSize:number): Observable<RecipePaginationImpl> {
+    return this.http.get<RecipePaginationImpl>(`${environment.apiBaseUrl}recipes/recent?page=${page}&pageSize=${pageSize}`)
   }
   constructor(private http: HttpClient) { }
-}
+} 
