@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-$primary: #00ffff70;
+$primary: #a5ffff70;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+/* Default margin for smaller screens */
+.content {
+    margin-left: 0;
+  }
+  
+  /* Margin for larger screens */
+  @media screen and (min-width: 768px) {
+    .content {
+      margin-left: 200px;
+    }
+  }
+  
