@@ -1,0 +1,19 @@
+.card-sized-image {
+    width: 100%;
+    height: 13vw;
+    object-fit: cover;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+@media screen and (max-width: 768px) {
+    .card-sized-image {
+        height: 30vw;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .card-sized-image {
+        height: 30vw;
+    }
+}
