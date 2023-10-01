@@ -13,11 +13,3 @@ export interface Recipe {
   imageUrl: string;
 }
 
-export class RecipePaginationImpl implements RecipePagination {
-  totalCount!: number;
-  pageSize: number = 8;
-  currentPageNumber: number = 1;
-  totalPages!: number;
-  data!: Recipe[];
-}
-
