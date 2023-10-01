@@ -14,6 +14,7 @@ import { YourSharesComponent } from './pages/your-shares/your-shares.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { RecipeCardsComponent } from './components/recipe-cards/recipe-cards.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RecipeCardsComponent } from './components/recipe-cards/recipe-cards.com
     YourSharesComponent,
     FavoritesComponent,
     PaginationComponent,
-    RecipeCardsComponent
+    RecipeCardsComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
