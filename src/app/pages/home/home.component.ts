@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loadData(this.recipePagination.currentPageNumber);
-    console.log(this.recipePagination.data)
   }
 
   loadData(page: number) {
