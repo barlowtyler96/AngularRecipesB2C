@@ -1,6 +1,6 @@
-<div class="pagination-container">
-    <button [disabled]="currentPageNumber === 1" (click)="goToPage(currentPageNumber - 1)">Previous</button>
+<div class="pagination-container m-2">
+    <button class="btn btn-primary" [disabled]="currentPageNumber === 1" (click)="goToPage(currentPageNumber - 1)">Previous</button>
     <span>Page {{ currentPageNumber }} of {{ totalPages }}</span>
-    <button [disabled]="currentPageNumber === totalPages" (click)="goToPage(currentPageNumber + 1)">Next</button>
+    <button class="btn btn-primary" [disabled]="currentPageNumber === totalPages" (click)="goToPage(currentPageNumber + 1)">Next</button>
   </div>
   
