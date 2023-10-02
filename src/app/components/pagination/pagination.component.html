@@ -1,6 +1,9 @@
-<div class="pagination-container m-2">
-    <button class="btn btn-primary" [disabled]="currentPageNumber === 1" (click)="goToPage(currentPageNumber - 1)">Previous</button>
-    <span>Page {{ currentPageNumber }} of {{ totalPages }}</span>
-    <button class="btn btn-primary" [disabled]="currentPageNumber === totalPages" (click)="goToPage(currentPageNumber + 1)">Next</button>
-  </div>
-  
+<div class="pagination-container m-2 text-center mt-5">
+  <button class="btn btn-primary" [disabled]="currentPageNumber === 1" (click)="goToPage(currentPageNumber - 1)"><i
+      class="fa-solid fa-arrow-left fa-xl"></i></button>
+  <span class="mx-2">Page {{ currentPageNumber }} of {{ totalPages }}</span>
+  <button class="btn btn-primary" [disabled]="currentPageNumber === totalPages"
+    (click)="goToPage(currentPageNumber + 1)"><i class="fa-solid fa-arrow-right fa-xl"></i></button>
+
+  <div> &nbsp; &nbsp; &nbsp; Total Results: {{totalCount}}</div>
+</div>
