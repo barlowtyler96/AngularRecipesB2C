@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-$primary: #a5ffff70;
+$primary: #69dada87;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+body {
+  background-color: #ffffff;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
 /* Default margin for smaller screens */
 .content {
@@ -9,7 +15,7 @@ $primary: #a5ffff70;
   }
   
   /* Margin for larger screens */
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     .content {
       margin-left: 200px;
     }
