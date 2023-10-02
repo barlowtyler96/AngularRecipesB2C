@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipePaginationImpl } from '../../models/recipe'
+import { RecipePagination } from '../../models/recipe'
 import { RecipesService } from 'src/app/services/recipes.service';
 
 @Component({
@@ -8,13 +8,13 @@ import { RecipesService } from 'src/app/services/recipes.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  recipePagination: RecipePaginationImpl = {
-    totalCount: 0,
-    pageSize: 8,
+  recipePagination: RecipePagination = {
     currentPageNumber: 1,
+    pageSize: 8,
+    totalCount: 0,
     totalPages: 0,
     data: []
-  }
+  };
 
   constructor(private recipesService: RecipesService) { }
 
@@ -23,11 +23,9 @@ export class HomeComponent implements OnInit {
   }
 
   loadData(page: number) {
-    this.recipesService.getRecipePagination(page, this.recipePagination.pageSize).subscribe((response) => {
-      this.recipePagination.currentPageNumber = response.currentPageNumber;
-      this.recipePagination.data = response.data;
-      this.recipePagination.totalCount = response.totalCount;
-      this.recipePagination.totalPages = response.totalPages;
-    });
+    this.recipesService.getRecipePagination(page, this.recipePagination.pageSize)
+      .subscribe((data) => {
+        this.recipePagination = data;
+      });
   }
 }

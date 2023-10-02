@@ -12,9 +12,9 @@ var HomeComponent = /** @class */ (function () {
     function HomeComponent(recipesService) {
         this.recipesService = recipesService;
         this.recipePagination = {
-            totalCount: 0,
-            pageSize: 8,
             currentPageNumber: 1,
+            pageSize: 8,
+            totalCount: 0,
             totalPages: 0,
             data: []
         };
@@ -24,11 +24,9 @@ var HomeComponent = /** @class */ (function () {
     };
     HomeComponent.prototype.loadData = function (page) {
         var _this = this;
-        this.recipesService.getRecipePagination(page, this.recipePagination.pageSize).subscribe(function (response) {
-            _this.recipePagination.currentPageNumber = response.currentPageNumber;
-            _this.recipePagination.data = response.data;
-            _this.recipePagination.totalCount = response.totalCount;
-            _this.recipePagination.totalPages = response.totalPages;
+        this.recipesService.getRecipePagination(page, this.recipePagination.pageSize)
+            .subscribe(function (data) {
+            _this.recipePagination = data;
         });
     };
     HomeComponent = __decorate([
