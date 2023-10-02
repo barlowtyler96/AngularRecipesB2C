@@ -1,16 +1,30 @@
 .sidebar {
-    background-image: url(../../../../src/assets/images/banner.jpg);
-    box-shadow: 0 5px 5px #000000ff;
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    transition: left 0.3s ease;
+  background-image: linear-gradient(to right, transparent, #ffffff), url(../../../../src/assets/images/banner.jpg);
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  transition: left 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    left: 0;
   }
-  
-  @media (min-width: 768px) {
-    .sidebar {
-      left: 0;
-    }
-  }
+}
+
+.page-tab {
+  transition: background-color 0.3s ease;
+}
+
+
+.page-tab a {
+  background-color: transparent;
+}
+
+
+.page-tab:hover a {
+  background-color: #333; /* Match the sidebar color */
+  transition: background-color 0.3s ease; 
+}

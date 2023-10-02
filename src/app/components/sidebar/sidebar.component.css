@@ -1,6 +1,5 @@
 .sidebar {
-  background-image: url(../../../../src/assets/images/banner.jpg);
-  box-shadow: 0 5px 5px #000000ff;
+  background-image: linear-gradient(to right, transparent, #ffffff), url(../../../../src/assets/images/banner.jpg);
   height: 100%;
   width: 200px;
   position: fixed;
@@ -13,4 +12,17 @@
   .sidebar {
     left: 0;
   }
+}
+.page-tab {
+  transition: background-color 0.3s ease;
+}
+
+.page-tab a {
+  background-color: transparent;
+}
+
+.page-tab:hover a {
+  background-color: #333;
+  /* Match the sidebar color */
+  transition: background-color 0.3s ease;
 }
