@@ -1,23 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 $primary: #69dada87;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 
 body {
   background-color: #ffffff;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 /* Default margin for smaller screens */
 .content {
-    margin-left: 0;
+  margin-left: 0;
+}
+
+/* Margin for larger screens */
+@media screen and (min-width: 769px) {
+  .content {
+    margin-left: 175px;
   }
-  
-  /* Margin for larger screens */
-  @media screen and (min-width: 769px) {
-    .content {
-      margin-left: 200px;
-    }
-  }
-  
+}

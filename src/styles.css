@@ -13029,6 +13029,6 @@ body {
 /* Margin for larger screens */
 @media screen and (min-width: 769px) {
   .content {
-    margin-left: 200px;
+    margin-left: 175px;
   }
 }
