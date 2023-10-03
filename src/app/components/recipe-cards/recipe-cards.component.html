@@ -1,14 +1,14 @@
 <div class="row row-cols-1 row-cols-md-2 g-4 mt-2 mx-xl-4">
-    <div *ngFor="let recipe of recipes;" class="col-xl-3 col-sm-6">
-        <div class="card h-100 fixed-width">
+    <div *ngFor="let recipe of recipes;" class="col-xxl-3 col-sm-6">
+        <div class="card card-shadow h-100 fixed-width">
             <img src="{{recipe.imageUrl}}" class="card-image border border-light border-1" alt="Dish Image">
             <div class="card-body rounded-2 shadow-lg">
                 <h5 class="card-title text-center">{{recipe.name}}</h5>
                 <p class="card-text">{{ recipe.description | truncate: 140 }}</p>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary">View Recipe</button>
-                <button class="btn"><i class="fa-solid fa-heart fa-lg"></i></button>
+                <button class="btn btn-primary mx-1 border-1 border-black">View Recipe</button>
+                <button class="btn btn-primary border-1 border-dark"><i class="fa-solid fa-heart fa-lg"></i></button>
             </div>
         </div>
     </div>
