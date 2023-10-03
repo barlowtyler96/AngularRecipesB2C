@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutComponent } from './layout/layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -15,11 +14,12 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { RecipeCardsComponent } from './components/recipe-cards/recipe-cards.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { FormsModule } from '@angular/forms';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent,
     SidebarComponent,
     NavbarComponent,
     HomeComponent,
@@ -29,12 +29,14 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     FavoritesComponent,
     PaginationComponent,
     RecipeCardsComponent,
-    TruncatePipe
+    TruncatePipe,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
