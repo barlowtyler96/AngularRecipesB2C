@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipePagination } from '../../models/recipe'
 import { RecipesService } from 'src/app/services/recipes.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,24 +9,15 @@ import { RecipesService } from 'src/app/services/recipes.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  recipePagination: RecipePagination = {
-    currentPageNumber: 1,
-    pageSize: 8,
-    totalCount: 0,
-    totalPages: 0,
-    data: []
-  };
+  recipePagination$!: Observable<RecipePagination>;
 
   constructor(private recipesService: RecipesService) { }
 
   ngOnInit() {
-    this.loadData(this.recipePagination.currentPageNumber);
+    this.loadData(1);
   }
 
   loadData(page: number) {
-    this.recipesService.getRecipePagination(page, this.recipePagination.pageSize)
-      .subscribe((data) => {
-        this.recipePagination = data;
-      });
+    this.recipePagination$ = this.recipesService.getRecipePagination(page, 8);
   }
 }

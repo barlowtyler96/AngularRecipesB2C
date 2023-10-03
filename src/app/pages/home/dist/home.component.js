@@ -11,23 +11,12 @@ var core_1 = require("@angular/core");
 var HomeComponent = /** @class */ (function () {
     function HomeComponent(recipesService) {
         this.recipesService = recipesService;
-        this.recipePagination = {
-            currentPageNumber: 1,
-            pageSize: 8,
-            totalCount: 0,
-            totalPages: 0,
-            data: []
-        };
     }
     HomeComponent.prototype.ngOnInit = function () {
-        this.loadData(this.recipePagination.currentPageNumber);
+        this.loadData(1);
     };
     HomeComponent.prototype.loadData = function (page) {
-        var _this = this;
-        this.recipesService.getRecipePagination(page, this.recipePagination.pageSize)
-            .subscribe(function (data) {
-            _this.recipePagination = data;
-        });
+        this.recipePagination$ = this.recipesService.getRecipePagination(page, 8);
     };
     HomeComponent = __decorate([
         core_1.Component({

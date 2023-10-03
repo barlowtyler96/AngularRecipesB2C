@@ -1,10 +1,12 @@
 <div class="content">
   <div class="container-fluid">
-    <app-recipe-cards [recipes]="recipePagination.data"></app-recipe-cards>
-
-    <app-pagination [totalCount]="recipePagination.totalCount" [pageSize]="recipePagination.pageSize"
+    <div *ngIf="(recipePagination$ | async) as recipePagination">
+      <app-recipe-cards [recipes]="recipePagination.data"></app-recipe-cards>
+    </div>
+    <div *ngIf="(recipePagination$ | async) as recipePagination">
+      <app-pagination [totalCount]="recipePagination.totalCount" [pageSize]="recipePagination.pageSize"
       [currentPageNumber]="recipePagination.currentPageNumber" [totalPages]="recipePagination.totalPages"
       (pageChange)="loadData($event)"></app-pagination>
+    </div>
   </div>
-
 </div>
