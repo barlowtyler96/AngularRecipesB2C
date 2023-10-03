@@ -15,7 +15,11 @@ var PaginationComponent = /** @class */ (function () {
     PaginationComponent.prototype.goToPage = function (page) {
         if (page >= 1 && page <= this.totalPages) {
             this.pageChange.emit(page);
+            this.scrollToTop();
         }
+    };
+    PaginationComponent.prototype.scrollToTop = function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     __decorate([
         core_1.Input()

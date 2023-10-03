@@ -15,6 +15,12 @@ export class PaginationComponent {
   goToPage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
       this.pageChange.emit(page);
+
+      this.scrollToTop();
     }
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
