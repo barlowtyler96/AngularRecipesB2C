@@ -12,24 +12,13 @@ var BrowseComponent = /** @class */ (function () {
     function BrowseComponent(recipesService) {
         this.recipesService = recipesService;
         this.searchText = '';
-        this.recipePagination = {
-            currentPageNumber: 1,
-            pageSize: 8,
-            totalCount: 0,
-            totalPages: 0,
-            data: []
-        };
     }
     BrowseComponent.prototype.onSearch = function (searchText) {
         this.searchText = searchText;
         this.loadData(1);
     };
     BrowseComponent.prototype.loadData = function (page) {
-        var _this = this;
-        this.recipesService.getRecipePaginationByKeyword(this.searchText, page, this.recipePagination.pageSize)
-            .subscribe(function (data) {
-            _this.recipePagination = data;
-        });
+        this.recipePagination$ = this.recipesService.getRecipePaginationByKeyword(this.searchText, page, 8);
     };
     BrowseComponent = __decorate([
         core_1.Component({

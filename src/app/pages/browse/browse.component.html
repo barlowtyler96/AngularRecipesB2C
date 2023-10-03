@@ -2,10 +2,14 @@
     <div class="container-fluid mt-5">
         <app-search-bar (searchEvent)="onSearch($event)"></app-search-bar>
 
-        <app-recipe-cards [recipes]="recipePagination.data"></app-recipe-cards>
+        <div *ngIf="(recipePagination$ | async) as recipePagination">
+            <app-recipe-cards [recipes]="recipePagination.data"></app-recipe-cards>
+        </div>
 
-        <app-pagination [totalCount]="recipePagination.totalCount" [pageSize]="recipePagination.pageSize"
-            [currentPageNumber]="recipePagination.currentPageNumber" [totalPages]="recipePagination.totalPages"
-            (pageChange)="loadData($event)"></app-pagination>
+        <div *ngIf="(recipePagination$ | async) as recipePagination">
+            <app-pagination [totalCount]="recipePagination.totalCount" [pageSize]="recipePagination.pageSize"
+                [currentPageNumber]="recipePagination.currentPageNumber" [totalPages]="recipePagination.totalPages"
+                (pageChange)="loadData($event)"></app-pagination>
+        </div>
     </div>
 </div>

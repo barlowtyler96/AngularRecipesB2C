@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 import { RecipePagination } from 'src/app/models/recipe';
 import { RecipesService } from 'src/app/services/recipes.service';
 
@@ -9,13 +10,7 @@ import { RecipesService } from 'src/app/services/recipes.service';
 })
 export class BrowseComponent {
   searchText = '';
-  recipePagination: RecipePagination = {
-    currentPageNumber: 1,
-    pageSize: 8,
-    totalCount: 0,
-    totalPages: 0,
-    data: []
-  };
+  recipePagination$!: Observable<RecipePagination>;
 
   constructor(private recipesService: RecipesService) { }
   
@@ -25,9 +20,6 @@ export class BrowseComponent {
   }
 
   loadData(page: number) {
-    this.recipesService.getRecipePaginationByKeyword(this.searchText, page, this.recipePagination.pageSize)
-      .subscribe((data) => {
-        this.recipePagination = data;
-      });
+    this.recipePagination$ = this.recipesService.getRecipePaginationByKeyword(this.searchText, page,  8);
   }
 }
