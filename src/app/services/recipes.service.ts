@@ -13,4 +13,10 @@ export class RecipesService {
   public getRecipePagination(page: number, pageSize:number): Observable<RecipePagination> {
     return this.http.get<RecipePagination>(`${environment.apiBaseUrl}recipes/recent?page=${page}&pageSize=${pageSize}`)
   }
+
+  public getRecipePaginationByKeyword(keyword: string, page: number, pageSize:number): Observable<RecipePagination> {
+    return this.http.get<RecipePagination>(`${environment.apiBaseUrl}recipes/search?keyword=${keyword}&page=${page}&pageSize=${pageSize}`)
+  }
+
+  
 } 

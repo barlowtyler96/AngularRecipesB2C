@@ -16,6 +16,9 @@ var RecipesService = /** @class */ (function () {
     RecipesService.prototype.getRecipePagination = function (page, pageSize) {
         return this.http.get(environment_development_1.environment.apiBaseUrl + "recipes/recent?page=" + page + "&pageSize=" + pageSize);
     };
+    RecipesService.prototype.getRecipePaginationByKeyword = function (keyword, page, pageSize) {
+        return this.http.get(environment_development_1.environment.apiBaseUrl + "recipes/search?keyword=" + keyword + "&page=" + page + "&pageSize=" + pageSize);
+    };
     RecipesService = __decorate([
         core_1.Injectable({
             providedIn: 'root'
