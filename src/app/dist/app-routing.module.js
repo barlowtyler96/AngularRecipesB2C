@@ -15,9 +15,9 @@ var share_component_1 = require("./pages/share/share.component");
 var your_shares_component_1 = require("./pages/your-shares/your-shares.component");
 var favorites_component_1 = require("./pages/favorites/favorites.component");
 var routes = [
-    { path: 'home', component: home_component_1.HomeComponent },
-    { path: 'browse', component: browse_component_1.BrowseComponent },
-    { path: 'share', component: share_component_1.ShareComponent },
+    { path: 'home', component: home_component_1.HomeComponent, data: { animation: 'isFirst' } },
+    { path: 'browse', component: browse_component_1.BrowseComponent, data: { animation: 'isSecond' } },
+    { path: 'share', component: share_component_1.ShareComponent, data: { animation: 'isThird' } },
     { path: 'yourShares', component: your_shares_component_1.YourSharesComponent },
     { path: 'favorites', component: favorites_component_1.FavoritesComponent }
 ];

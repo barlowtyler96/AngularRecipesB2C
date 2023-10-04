@@ -8,15 +8,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
+var route_animations_1 = require("./route-animations");
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.title = 'AngularRecipesB2C';
     }
+    AppComponent.prototype.prepareRoute = function (outlet) {
+        return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-root',
             templateUrl: './app.component.html',
-            styleUrls: ['./app.component.scss']
+            styleUrls: ['./app.component.scss'],
+            animations: [
+                route_animations_1.fader
+            ]
         })
     ], AppComponent);
     return AppComponent;
