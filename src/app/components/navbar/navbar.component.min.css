@@ -1,1 +1,1 @@
-.navbar{background-image:url(../../../assets/images/banner.jpg);box-shadow:0 1px 5px #000ff;transition:top .3s ease;transition:bottom .3s ease;display:none}@media (max-width:768px){.navbar{display:block}}
+.navbar{background-image:url(../../../assets/images/banner.jpg);box-shadow:0 1px 5px #000ff;transition:top .3s ease;display:none}@media (max-width:767px){.navbar{display:block}}

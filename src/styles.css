@@ -13021,14 +13021,6 @@ body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
-/* Default margin for smaller screens */
-.content {
-  margin-left: 0;
-}
-
-/* Margin for larger screens */
-@media screen and (min-width: 769px) {
-  .content {
-    margin-left: 175px;
-  }
+main {
+  position: relative;
 }

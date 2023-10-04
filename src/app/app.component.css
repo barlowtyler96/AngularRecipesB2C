@@ -1,11 +1,11 @@
 /* Default margin for smaller screens */
 .content {
-    margin-left: 70px;
+  margin-left: 70px;
 }
 
 /* Remove margin for screens smaller than 768px */
 @media (max-width: 767px) {
-    .content {
-        margin-left: 0;
-    }
+  .content {
+    margin-left: 0;
+  }
 }

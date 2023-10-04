@@ -1,11 +1,11 @@
 .sidebar {
   background-image: url(../../../../src/assets/images/banner.jpg);
   height: 100%;
-  width: 175px;
   position: fixed;
   top: 0;
   left: -250px;
   box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 
 @media (min-width: 768px) {
