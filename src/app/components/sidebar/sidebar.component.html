@@ -1,34 +1,29 @@
 <div class="sidebar">
+    
+      
     <ul class="nav flex-column">
+        <button class="page-tab btn-primary" (click)="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+          </button>
         <li class="page-tab" routerLinkActive="active" routerLink="/home" ariaCurrentWhenActive="page">
-            <a class="text-black text-decoration-none">
-                <i class="fa-solid fa-house fa-lg"></i>
-                Home
-            </a>
+            <a class="px-5" *ngIf="isSidebarExpanded; else elseBlock"><i class="fa-solid fa-home fa-lg"></i> Home</a>
+            <ng-template #elseBlock><i class="fa-solid fa-home fa-sm"></i></ng-template>
         </li>
         <li class="page-tab" routerLinkActive="active" routerLink="/browse" ariaCurrentWhenActive="page">
-            <a class="text-black text-decoration-none">
-                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                Browse
-            </a>
+            <a *ngIf="isSidebarExpanded; else elseBlock2"><i class="fa-solid fa-magnifying-glass fa-lg"></i> Browse</a>
+            <ng-template #elseBlock2><i class="fa-solid fa-magnifying-glass fa-sm"></i></ng-template>
         </li>
         <li class="page-tab" routerLinkActive="active" routerLink="/share" ariaCurrentWhenActive="page">
-            <a class="text-black text-decoration-none">
-                <i class="fa-solid fa-plus fa-xl"></i>
-                Share
-            </a>
+            <a *ngIf="isSidebarExpanded; else elseBlock3"><i class="fa-solid fa-plus fa-xl"></i> Share</a>
+            <ng-template #elseBlock3><i class="fa-solid fa-plus fa-md"></i></ng-template>
         </li>
         <li class="page-tab" routerLinkActive="active" routerLink="/yourShares" ariaCurrentWhenActive="page">
-            <a class="text-black text-decoration-none" >
-                <i class="fa-solid fa-user fa-lg"></i>
-                Your Shares
-            </a>
+            <a *ngIf="isSidebarExpanded; else elseBlock4"><i class="fa-solid fa-cloud-arrow-up fa-lg"></i> Your Shares</a>
+            <ng-template #elseBlock4><i class="fa-solid fa-cloud-arrow-up fa-sm"></i></ng-template>
         </li>
         <li class="page-tab" routerLinkActive="active" routerLink="/favorites" ariaCurrentWhenActive="page">
-            <a class="text-black text-decoration-none" >
-                <i class="fa-solid fa-heart fa-lg"></i>
-                Favorites
-            </a>
+            <a *ngIf="isSidebarExpanded; else elseBlock5"><i class="fa-solid fa-heart fa-lg"></i> Favorites</a>
+            <ng-template #elseBlock5><i class="fa-solid fa-heart fa-sm"></i></ng-template>
         </li>
     </ul>
 </div>

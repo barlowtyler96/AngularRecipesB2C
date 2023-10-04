@@ -10,7 +10,11 @@ exports.SidebarComponent = void 0;
 var core_1 = require("@angular/core");
 var SidebarComponent = /** @class */ (function () {
     function SidebarComponent() {
+        this.isSidebarExpanded = false;
     }
+    SidebarComponent.prototype.toggleSidebar = function () {
+        this.isSidebarExpanded = !this.isSidebarExpanded;
+    };
     SidebarComponent = __decorate([
         core_1.Component({
             selector: 'app-sidebar',
