@@ -1,0 +1,6 @@
+<div class="full-recipe">
+    <div *ngIf="(fullRecipe$ | async) as fullRecipe">
+        <div>{{ fullRecipe.name }}</div>
+        <div>{{ fullRecipe.instructions }}</div>
+    </div>
+</div>
