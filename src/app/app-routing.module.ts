@@ -7,9 +7,9 @@ import { YourSharesComponent } from './pages/your-shares/your-shares.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'browse', component: BrowseComponent},
-  {path: 'share', component: ShareComponent},
+  {path: 'home', component: HomeComponent, data: { animation: 'isFirst' } },
+  {path: 'browse', component: BrowseComponent, data: { animation: 'isSecond' } },
+  {path: 'share', component: ShareComponent, data: { animation: 'isThird' } },
   {path: 'yourShares', component: YourSharesComponent},
   {path: 'favorites', component: FavoritesComponent}
 ];

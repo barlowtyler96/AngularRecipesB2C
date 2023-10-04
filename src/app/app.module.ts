@@ -16,7 +16,8 @@ import { RecipeCardsComponent } from './components/recipe-cards/recipe-cards.com
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { FormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-
+import { FullRecipeComponent } from './components/full-recipe/full-recipe.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +32,11 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     RecipeCardsComponent,
     TruncatePipe,
     SearchBarComponent,
+    FullRecipeComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
