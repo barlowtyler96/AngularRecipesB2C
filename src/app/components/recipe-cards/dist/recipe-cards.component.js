@@ -11,9 +11,15 @@ var core_1 = require("@angular/core");
 var RecipeCardsComponent = /** @class */ (function () {
     function RecipeCardsComponent() {
     }
+    RecipeCardsComponent.prototype.showFullRecipe = function (recipeId) {
+        this.selectedRecipeId = recipeId;
+    };
     __decorate([
         core_1.Input()
     ], RecipeCardsComponent.prototype, "recipes");
+    __decorate([
+        core_1.Input()
+    ], RecipeCardsComponent.prototype, "recipe");
     RecipeCardsComponent = __decorate([
         core_1.Component({
             selector: 'app-recipe-cards',

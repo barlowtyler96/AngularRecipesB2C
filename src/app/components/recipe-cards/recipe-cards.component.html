@@ -7,9 +7,10 @@
                 <p class="card-text">{{ recipe.description | truncate: 140 }}</p>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary mx-1 border-1 border-black">View Recipe</button>
+                <button (click)="showFullRecipe(recipe.recipeId)" class="btn btn-primary mx-1 border-1 border-black">View Recipe</button>
                 <button class="btn btn-primary border-1 border-dark"><i class="fa-solid fa-heart fa-lg"></i></button>
             </div>
         </div>
     </div>
+    <app-full-recipe [recipeId]="selectedRecipeId" *ngIf="selectedRecipeId"></app-full-recipe>
 </div>

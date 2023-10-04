@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe';
 
 @Component({
@@ -8,4 +8,10 @@ import { Recipe } from 'src/app/models/recipe';
 })
 export class RecipeCardsComponent {
   @Input() recipes!: Recipe[];
+  @Input() recipe!: Recipe; // Input property for recipe data
+  selectedRecipeId!: number;
+  
+  showFullRecipe(recipeId: number) {
+    this.selectedRecipeId = recipeId;
+  }
 }
