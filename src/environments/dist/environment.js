@@ -3,5 +3,5 @@ exports.__esModule = true;
 exports.environment = void 0;
 exports.environment = {
     production: true,
-    apiBaseUrl: 'https://culinarysharesapi.azurewebsites.net/api/v1/'
+    apiBaseUrl: 'https://localhost:7053/api/v1/'
 };

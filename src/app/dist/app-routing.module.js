@@ -14,20 +14,26 @@ var browse_component_1 = require("./pages/browse/browse.component");
 var share_component_1 = require("./pages/share/share.component");
 var your_shares_component_1 = require("./pages/your-shares/your-shares.component");
 var favorites_component_1 = require("./pages/favorites/favorites.component");
+var msal_angular_1 = require("@azure/msal-angular");
 var routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: home_component_1.HomeComponent, data: { animation: 'isFirst' } },
     { path: 'browse', component: browse_component_1.BrowseComponent, data: { animation: 'isSecond' } },
-    { path: 'share', component: share_component_1.ShareComponent, data: { animation: 'isThird' } },
-    { path: 'yourShares', component: your_shares_component_1.YourSharesComponent },
-    { path: 'favorites', component: favorites_component_1.FavoritesComponent }
+    { path: 'share', component: share_component_1.ShareComponent, data: { animation: 'isThird' },
+        canActivate: [msal_angular_1.MsalGuard] },
+    { path: 'yourShares', component: your_shares_component_1.YourSharesComponent, data: { animation: 'isFourth' },
+        canActivate: [msal_angular_1.MsalGuard] },
+    { path: 'favorites', component: favorites_component_1.FavoritesComponent, data: { animation: 'isFifth' },
+        canActivate: [msal_angular_1.MsalGuard] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
     }
     AppRoutingModule = __decorate([
         core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes)],
+            imports: [router_1.RouterModule.forRoot(routes, {
+                    initialNavigation: 'enabledBlocking'
+                })],
             exports: [router_1.RouterModule]
         })
     ], AppRoutingModule);

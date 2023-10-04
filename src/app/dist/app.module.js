@@ -10,6 +10,11 @@ exports.AppModule = void 0;
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/common/http");
+// Import MSAL and MSAL browser libraries. 
+var msal_angular_1 = require("@azure/msal-angular");
+var msal_browser_1 = require("@azure/msal-browser");
+// Import the Azure AD B2C configuration 
+var auth_config_1 = require("./auth-config");
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
 var sidebar_component_1 = require("./components/sidebar/sidebar.component");
@@ -51,10 +56,34 @@ var AppModule = /** @class */ (function () {
                 animations_1.BrowserAnimationsModule,
                 app_routing_module_1.AppRoutingModule,
                 http_1.HttpClientModule,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                msal_angular_1.MsalModule.forRoot(new msal_browser_1.PublicClientApplication(auth_config_1.msalConfig), {
+                    // The routing guard configuration. 
+                    interactionType: msal_browser_1.InteractionType.Redirect,
+                    authRequest: {
+                        scopes: auth_config_1.protectedResources.culinarySharesApi.scopes
+                    }
+                }, {
+                    // MSAL interceptor configuration.
+                    // The protected resource mapping maps your web API with the corresponding app scopes. If your code needs to call another web API, add the URI mapping here.
+                    interactionType: msal_browser_1.InteractionType.Redirect,
+                    protectedResourceMap: new Map([
+                        [auth_config_1.protectedResources.culinarySharesApi.endpoint, auth_config_1.protectedResources.culinarySharesApi.scopes]
+                    ])
+                })
             ],
-            providers: [],
-            bootstrap: [app_component_1.AppComponent]
+            providers: [
+                {
+                    provide: http_1.HTTP_INTERCEPTORS,
+                    useClass: msal_angular_1.MsalInterceptor,
+                    multi: true
+                },
+                msal_angular_1.MsalGuard
+            ],
+            bootstrap: [
+                app_component_1.AppComponent,
+                msal_angular_1.MsalRedirectComponent
+            ]
         })
     ], AppModule);
     return AppModule;

@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// Import MSAL and MSAL browser libraries. 
+import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
+import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
+
+// Import the Azure AD B2C configuration 
+import { msalConfig, protectedResources } from './auth-config';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FullRecipeComponent } from './components/full-recipe/full-recipe.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,9 +47,35 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MsalModule.forRoot(new PublicClientApplication(msalConfig),
+      {
+        // The routing guard configuration. 
+        interactionType: InteractionType.Redirect,
+        authRequest: {
+          scopes: protectedResources.culinarySharesApi.scopes
+        }
+      },
+      {
+        // MSAL interceptor configuration.
+        // The protected resource mapping maps your web API with the corresponding app scopes. If your code needs to call another web API, add the URI mapping here.
+        interactionType: InteractionType.Redirect,
+        protectedResourceMap: new Map([
+          [protectedResources.culinarySharesApi.endpoint, protectedResources.culinarySharesApi.scopes]
+        ])
+      })
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsalInterceptor,
+      multi: true
+    },
+    MsalGuard
+  ],
+  bootstrap: [
+    AppComponent,
+    MsalRedirectComponent
+  ]
 })
 export class AppModule { }
