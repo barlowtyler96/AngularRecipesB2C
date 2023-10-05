@@ -43,7 +43,7 @@ export const msalConfig: Configuration = {
 
 export const protectedResources = {
   culinarySharesApi: {
-    endpoint: `${environment.apiBaseUrl}`,
+    endpoint: `${environment.apiBaseUrl}/Users`,
     scopes: ["https://recipesb2corganization.onmicrosoft.com/ec576dc8-cdb9-4151-a774-9a9be9495c02/User.Read.Write"],
   },
 }
