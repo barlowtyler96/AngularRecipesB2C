@@ -42,7 +42,7 @@ exports.msalConfig = {
 };
 exports.protectedResources = {
     culinarySharesApi: {
-        endpoint: environment_development_1.environment.apiBaseUrl + "/Users",
+        endpoint: environment_development_1.environment.apiBaseUrl + "Users",
         scopes: ["https://recipesb2corganization.onmicrosoft.com/ec576dc8-cdb9-4151-a774-9a9be9495c02/User.Read.Write"]
     }
 };
