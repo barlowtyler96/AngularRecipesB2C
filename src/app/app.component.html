@@ -1,10 +1,5 @@
-<app-navbar></app-navbar>
+<app-navbar [loginDisplay]="loginDisplay"></app-navbar>
 <app-sidebar [loginDisplay]="loginDisplay"></app-sidebar>
-<div *ngIf="!loginDisplay">
-    <p>Please sign-in to see your profile information.</p>
-</div>
-<button *ngIf="!loginDisplay" (click)="login()">Login</button>
-<button *ngIf="loginDisplay" (click)="logout()">Logout</button>
 
 <main [@routeAnimations]="prepareRoute(outlet)" class="content">
     <router-outlet #outlet="outlet"></router-outlet>
