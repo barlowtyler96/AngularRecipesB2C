@@ -10,3 +10,19 @@
     display: block;
   }
 }
+.page-tab {
+  padding: 10px;
+  margin: 10px;
+  background-color: #ffff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.page-tab:hover {
+  background-color: #69dada87;
+  /* Change background color to white on hover */
+}
+
+.active {
+  background-color: #69dada87;
+}
