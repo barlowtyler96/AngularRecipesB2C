@@ -7,8 +7,19 @@
                 <p class="card-text">{{ recipe.description | truncate: 140 }}</p>
             </div>
             <div class="card-footer">
-                <button (click)="showFullRecipe(recipe.recipeId)" class="btn btn-primary mx-1 border-1 border-black">View Recipe</button>
-                <button class="btn btn-primary border-1 border-dark"><i class="fa-solid fa-heart fa-lg"></i></button>
+                <button (click)="showFullRecipe(recipe.recipeId)" class="btn btn-primary mx-1 border-1 border-black">
+                    View Recipe
+                </button>
+                <button (click)="postUserFavorite(recipe.recipeId, true)" class="btn btn-primary border border-black"
+                    *ngIf="userFavoriteIds.includes(recipe.recipeId); else elseBlock">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <ng-template #elseBlock>
+                    <button (click)="postUserFavorite(recipe.recipeId, false)"
+                        class="btn btn-primary border border-black">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </ng-template>
             </div>
         </div>
     </div>
