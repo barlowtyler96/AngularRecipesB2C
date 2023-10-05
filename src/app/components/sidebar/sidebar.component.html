@@ -24,12 +24,25 @@
             <a *ngIf="isSidebarExpanded; else elseBlock5"><i class="fa-solid fa-heart fa-lg"></i> Favorites</a>
             <ng-template #elseBlock5><i class="fa-solid fa-heart fa-sm"></i></ng-template>
         </li>
-        <li class="page-tab" routerLinkActive="active" routerLink="/favorites" ariaCurrentWhenActive="page">
-            <a *ngIf="isSidebarExpanded; else elseBlock7"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
-            <ng-template #elseBlock7><i class="fa-solid fa-arrow-right-to-bracket"></i></ng-template>
+        <li class="page-tab">
+            <div *ngIf="isSidebarExpanded; else elseBlock6">
+                <div *ngIf="!loginDisplay" (click)="login()">
+                    <i class="fa-solid fa-arrow-right-to-bracket" style="color: #85ca7b;"></i>
+                    Login
+                </div>
+                <div *ngIf="loginDisplay" (click)="logout()">
+                    <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fda3a3;"></i>
+                    Logout
+                </div>
+            </div>
+            <ng-template #elseBlock6>
+                <div *ngIf="!loginDisplay" (click)="login()">
+                    <i class="fa-solid fa-arrow-right-to-bracket" style="color: #85ca7b;"></i>
+                </div>
+                <div *ngIf="loginDisplay" (click)="logout()">
+                    <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fd7272;"></i>
+                </div>
+            </ng-template>
         </li>
-
-        <button *ngIf="!loginDisplay" (click)="login()">Login</button>
-        <button *ngIf="loginDisplay" (click)="logout()">Logout</button>
     </ul>
 </div>
