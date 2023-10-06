@@ -16,6 +16,9 @@ var UsersService = /** @class */ (function () {
     UsersService.prototype.getUserFavoriteIds = function () {
         return this.http.get(environment_development_1.environment.apiBaseUrl + "Users/favoritesIds");
     };
+    UsersService.prototype.getUserFavorites = function () {
+        return this.http.get(environment_development_1.environment.apiBaseUrl + "Users/favorites");
+    };
     UsersService.prototype.deleteUserFavorite = function (recipeId) {
         var url = environment_development_1.environment.apiBaseUrl + "Users/favorite/" + recipeId;
         return this.http["delete"](url);
