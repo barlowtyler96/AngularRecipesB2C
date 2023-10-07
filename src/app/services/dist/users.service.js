@@ -27,6 +27,12 @@ var UsersService = /** @class */ (function () {
         var url = environment_development_1.environment.apiBaseUrl + "Users/favorite/" + recipeId;
         return this.http.post(url, {});
     };
+    UsersService.prototype.upload = function (formData) {
+        return this.http.post(environment_development_1.environment.apiBaseUrl + "Users/upload", formData);
+    };
+    UsersService.prototype.postSharedRecipe = function (recipe) {
+        return this.http.post(environment_development_1.environment.apiBaseUrl + "Users/share", recipe);
+    };
     UsersService = __decorate([
         core_1.Injectable({
             providedIn: 'root'
