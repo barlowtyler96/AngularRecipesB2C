@@ -8,57 +8,74 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.ShareComponent = void 0;
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
 var ShareComponent = /** @class */ (function () {
-    function ShareComponent(usersService, recipesService) {
+    function ShareComponent(usersService, recipesService, fb) {
         this.usersService = usersService;
         this.recipesService = recipesService;
-        this.filename = '';
-        this.recipe = {
-            recipeId: 0,
-            name: '',
-            description: '',
-            instructions: '',
-            imageUrl: '',
-            recipeIngredients: []
-        };
+        this.fb = fb;
     }
-    ShareComponent.prototype.setFilename = function (files) {
-        if (files[0]) {
-            // Generate a unique filename using a timestamp and a random string
+    ShareComponent.prototype.ngOnInit = function () {
+        this.recipeForm = this.fb.group({
+            name: ['', forms_1.Validators.required],
+            description: ['', forms_1.Validators.required],
+            instructions: ['', forms_1.Validators.required],
+            imageUrl: [''],
+            recipeIngredients: this.fb.array([
+                this.fb.group({
+                    ingredientName: ['', forms_1.Validators.required],
+                    unit: ['', forms_1.Validators.required],
+                    amount: [0, forms_1.Validators.required]
+                })
+            ])
+        });
+    };
+    Object.defineProperty(ShareComponent.prototype, "recipeIngredients", {
+        get: function () {
+            return this.recipeForm.get('recipeIngredients');
+        },
+        enumerable: false,
+        configurable: true
+    });
+    ShareComponent.prototype.addRecipeIngredient = function () {
+        this.recipeIngredients.push(this.fb.control({
+            ingredientName: [''],
+            amount: [0],
+            unit: ['']
+        }));
+    };
+    ShareComponent.prototype.deleteRecipeIngredient = function (index) {
+        this.recipeIngredients.removeAt(index);
+    };
+    ShareComponent.prototype.submit = function () {
+        if (this.recipeForm.valid) {
+            var baseBlobUrl = 'https://recipesvaultimages.blob.core.windows.net/recipevaultimages/';
             var timestamp = new Date().getTime();
             var randomString = Math.random().toString(36).substring(7);
-            this.filename = timestamp + "_" + randomString + "_" + files[0].name;
-        }
-    };
-    ShareComponent.prototype.onSubmit = function (files) {
-        var _this = this;
-        var formData = new FormData();
-        if (files[0]) {
-            // Use the generated unique filename when appending to FormData
-            formData.append(this.filename, files[0]);
-        }
-        this.usersService
-            .upload(formData)
-            .subscribe(function (_a) {
-            var path = _a.path;
-            _this.recipe.imageUrl = path;
-            _this.usersService.postSharedRecipe(_this.recipe).subscribe(function (recipeId) {
-                _this.createdRecipeId = recipeId;
+            // Handle form submission here
+            var formData = this.recipeForm.value;
+            var newFileName = timestamp + "_" + randomString + "_" + this.selectedFile.name;
+            var imgFormData = new FormData();
+            imgFormData.append('image', this.selectedFile, newFileName);
+            formData.append('imageUrl', this.selectedFile, newFileName);
+            //pass new file name to backend, set new file name to recipe
+            this.usersService.upload(imgFormData)
+                .subscribe(function (res) {
             });
-            _this.createdRecipes$ = _this.recipesService.getRecipePagination(1, 8);
-        });
+            this.usersService.postSharedRecipe(formData);
+        }
+        else {
+            // Handle form validation errors
+        }
     };
-    ShareComponent.prototype.addIngredient = function () {
-        this.recipe.recipeIngredients.push({
-            recipeId: 0,
-            ingredientId: 0,
-            amount: 0,
-            unit: '',
-            ingredientName: ''
-        });
-    };
-    ShareComponent.prototype.removeIngredient = function (index) {
-        this.recipe.recipeIngredients.splice(index, 1);
+    ShareComponent.prototype.onFileSelected = function (event) {
+        if (event.target.files[0].size > 1024 * 1024 * 3) {
+            alert("File size exceeds the maximum allowed size (1MB). Please choose a smaller file.");
+            event.target.value = null;
+        }
+        else {
+            this.selectedFile = event.target.files[0];
+        }
     };
     ShareComponent = __decorate([
         core_1.Component({
