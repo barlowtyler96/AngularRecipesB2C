@@ -2,5 +2,10 @@
     <div *ngIf="(fullRecipe$ | async) as fullRecipe">
         <div>{{ fullRecipe.name }}</div>
         <div>{{ fullRecipe.instructions }}</div>
+        <div *ngFor="let recipeIngredient of fullRecipe.recipeIngredients">
+            <div>{{ recipeIngredient.amount }}</div>
+            <div>{{ recipeIngredient.unit }}</div>
+            <div>{{ recipeIngredient.ingredientName }}</div>
+        </div>
     </div>
 </div>
