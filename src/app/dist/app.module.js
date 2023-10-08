@@ -56,6 +56,7 @@ var AppModule = /** @class */ (function () {
                 animations_1.BrowserAnimationsModule,
                 app_routing_module_1.AppRoutingModule,
                 http_1.HttpClientModule,
+                forms_1.ReactiveFormsModule,
                 forms_1.FormsModule,
                 msal_angular_1.MsalModule.forRoot(new msal_browser_1.PublicClientApplication(auth_config_1.msalConfig), {
                     // The routing guard configuration. 
@@ -64,8 +65,7 @@ var AppModule = /** @class */ (function () {
                         scopes: auth_config_1.protectedResources.culinarySharesApi.scopes
                     }
                 }, {
-                    // MSAL interceptor configuration.
-                    // The protected resource mapping maps your web API with the corresponding app scopes. If your code needs to call another web API, add the URI mapping here.
+                    // The protected resource mapping maps the web API with the corresponding app scopes.
                     interactionType: msal_browser_1.InteractionType.Redirect,
                     protectedResourceMap: new Map([
                         [auth_config_1.protectedResources.culinarySharesApi.endpoint, auth_config_1.protectedResources.culinarySharesApi.scopes]
