@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Recipe } from '../models/recipe';
 import { RecipeFull } from '../models/recipe-full';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,8 @@ export class UsersService {
     );
   }
 
-  public postSharedRecipe(recipe: RecipeFull) {
+  public postSharedRecipe(recipeForm: FormGroup): Observable<number> {
+    const recipe: RecipeFull = recipeForm.value
     return this.http.post<number>(
       `${environment.apiBaseUrl}Users/share`,
       recipe
