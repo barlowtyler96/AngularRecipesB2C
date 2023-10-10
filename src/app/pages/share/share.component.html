@@ -12,7 +12,7 @@
         <textarea id="instructions" formControlName="instructions" class="form-control"></textarea>
     </div>
     <div formArrayName="recipeIngredients">
-        
+
         <div *ngFor="let ingredient of recipeIngredients.controls; let i = index" class="form-group my-3">
             <div [formGroupName]="i">
                 <label for="amount">Amount: </label>
@@ -29,9 +29,8 @@
     <input type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event)"> <br>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-<div *ngIf="(createdRecipes$ | async) as createdRecipes">
-    <div class="alert alert-success">Your recipe was submitted. It will be reviewed before being permanently added
-        to the site.</div>
-    <app-recipe-cards [recipes]="createdRecipes.data"></app-recipe-cards>
+<div *ngIf="recipeSubmitted">
+    <div class="alert alert-success">Your recipe was submitted. It will be reviewed before being permanently added to
+        the site.</div>
+    <app-recipe-cards [recipes]="this.createdRecipes.data"></app-recipe-cards>
 </div>

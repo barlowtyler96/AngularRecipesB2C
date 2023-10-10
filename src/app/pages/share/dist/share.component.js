@@ -14,6 +14,8 @@ var ShareComponent = /** @class */ (function () {
         this.usersService = usersService;
         this.recipesService = recipesService;
         this.fb = fb;
+        this.recipeSubmitted = false;
+        this.selectedFile = null;
     }
     ShareComponent.prototype.ngOnInit = function () {
         this.recipeForm = this.fb.group({
@@ -29,6 +31,72 @@ var ShareComponent = /** @class */ (function () {
                 })
             ])
         });
+        this.createdRecipes = {
+            totalCount: 0,
+            pageSize: 0,
+            currentPageNumber: 0,
+            totalPages: 0,
+            data: []
+        };
+    };
+    ShareComponent.prototype.submit = function () {
+        if (this.recipeForm.valid) {
+            if (this.selectedFile != null) {
+                this.postImageAndRecipe();
+            }
+            else {
+                this.postRecipeOnly();
+            }
+        }
+    };
+    ShareComponent.prototype.postRecipeOnly = function () {
+        var _this = this;
+        this.usersService.postSharedRecipe(this.recipeForm)
+            .subscribe(function (res) {
+            _this.createdRecipeId = res;
+            _this.recipesService
+                .getFullRecipeById(_this.createdRecipeId)
+                .subscribe(function (res) {
+                _this.createdRecipes.data.push(res);
+                _this.recipeSubmitted = true;
+            });
+        });
+    };
+    ShareComponent.prototype.postImageAndRecipe = function () {
+        var _this = this;
+        var baseBlobUrl = 'https://recipesvaultimages.blob.core.windows.net/recipevaultimages/';
+        var newFileName = this.generateNewFileName();
+        var imgFormData = new FormData();
+        imgFormData.append(newFileName, this.selectedFile, newFileName);
+        this.recipeForm.get('imageUrl').setValue("" + baseBlobUrl + newFileName);
+        this.usersService.upload(imgFormData)
+            .subscribe(function (res) {
+            _this.usersService.postSharedRecipe(_this.recipeForm)
+                .subscribe(function (res) {
+                _this.createdRecipeId = res;
+                _this.recipesService
+                    .getFullRecipeById(_this.createdRecipeId)
+                    .subscribe(function (res) {
+                    _this.createdRecipes.data.push(res);
+                    _this.recipeSubmitted = true;
+                });
+            });
+        });
+    };
+    ShareComponent.prototype.onFileSelected = function (event) {
+        var inputElement = event.target;
+        if (inputElement.files.length === 0) {
+            // No files selected, reset the selectedFile to null
+            this.selectedFile = null;
+        }
+        else if (inputElement.files[0].size > 1024 * 1024 * 3) {
+            alert("File size exceeds the maximum allowed size (3MB). Please choose a smaller file.");
+            inputElement.value = null;
+            this.selectedFile = null; // Also reset selectedFile
+        }
+        else {
+            this.selectedFile = inputElement.files[0];
+        }
     };
     Object.defineProperty(ShareComponent.prototype, "recipeIngredients", {
         get: function () {
@@ -47,35 +115,10 @@ var ShareComponent = /** @class */ (function () {
     ShareComponent.prototype.deleteRecipeIngredient = function (index) {
         this.recipeIngredients.removeAt(index);
     };
-    ShareComponent.prototype.submit = function () {
-        if (this.recipeForm.valid) {
-            var baseBlobUrl = 'https://recipesvaultimages.blob.core.windows.net/recipevaultimages/';
-            var timestamp = new Date().getTime();
-            var randomString = Math.random().toString(36).substring(7);
-            // Handle form submission here
-            var formData = this.recipeForm.value;
-            var newFileName = timestamp + "_" + randomString + "_" + this.selectedFile.name;
-            var imgFormData = new FormData();
-            imgFormData.append('image', this.selectedFile, newFileName);
-            formData.append('imageUrl', this.selectedFile, newFileName);
-            //pass new file name to backend, set new file name to recipe
-            this.usersService.upload(imgFormData)
-                .subscribe(function (res) {
-            });
-            this.usersService.postSharedRecipe(formData);
-        }
-        else {
-            // Handle form validation errors
-        }
-    };
-    ShareComponent.prototype.onFileSelected = function (event) {
-        if (event.target.files[0].size > 1024 * 1024 * 3) {
-            alert("File size exceeds the maximum allowed size (1MB). Please choose a smaller file.");
-            event.target.value = null;
-        }
-        else {
-            this.selectedFile = event.target.files[0];
-        }
+    ShareComponent.prototype.generateNewFileName = function () {
+        var timestamp = new Date().getTime();
+        var randomString = Math.random().toString(36).substring(7);
+        return timestamp + "_" + randomString + "_" + this.selectedFile.name;
     };
     ShareComponent = __decorate([
         core_1.Component({
