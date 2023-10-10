@@ -21,7 +21,7 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { RecipeCardsComponent } from './components/recipe-cards/recipe-cards.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FullRecipeComponent } from './components/full-recipe/full-recipe.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -47,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
     MsalModule.forRoot(new PublicClientApplication(msalConfig),
       {
@@ -57,8 +58,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
         }
       },
       {
-        // MSAL interceptor configuration.
-        // The protected resource mapping maps your web API with the corresponding app scopes. If your code needs to call another web API, add the URI mapping here.
+        // The protected resource mapping maps the web API with the corresponding app scopes.
         interactionType: InteractionType.Redirect,
         protectedResourceMap: new Map([
           [protectedResources.culinarySharesApi.endpoint, protectedResources.culinarySharesApi.scopes]
