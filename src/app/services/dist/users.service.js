@@ -30,7 +30,8 @@ var UsersService = /** @class */ (function () {
     UsersService.prototype.upload = function (formData) {
         return this.http.post(environment_development_1.environment.apiBaseUrl + "Users/upload", formData);
     };
-    UsersService.prototype.postSharedRecipe = function (recipe) {
+    UsersService.prototype.postSharedRecipe = function (recipeForm) {
+        var recipe = recipeForm.value;
         return this.http.post(environment_development_1.environment.apiBaseUrl + "Users/share", recipe);
     };
     UsersService = __decorate([
