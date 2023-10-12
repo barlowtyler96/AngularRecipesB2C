@@ -1,5 +1,5 @@
 .sidebar {
-  background-image: url(../../../../src/assets/images/banner.jpg);
+  background-image: linear-gradient(180deg, #052767 0%, #ec261085 70%);
   height: 100%;
   position: fixed;
   top: 0;
@@ -11,6 +11,8 @@
 @media (min-width: 768px) {
   .sidebar {
     left: 0;
+    top: 92px;
+    bottom: 0;
   }
 }
 .page-tab {
