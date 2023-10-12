@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { Recipe, RecipePagination } from 'src/app/models/recipe';
-import { RecipesService } from 'src/app/services/recipes.service';
+import { Recipe } from 'src/app/models/recipe';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -9,16 +8,16 @@ import { UsersService } from 'src/app/services/users.service';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss']
 })
-export class FavoritesComponent {
+export class FavoritesComponent implements OnInit {
   recipes$!: Observable<Recipe[]>;
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-    this.loadData(1);
+    this.loadData();
   }
 
-  loadData(page: number) {
+  loadData() {
     this.recipes$ = this.usersService.getUserFavorites();
   }
 }

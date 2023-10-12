@@ -13,9 +13,9 @@ var FavoritesComponent = /** @class */ (function () {
         this.usersService = usersService;
     }
     FavoritesComponent.prototype.ngOnInit = function () {
-        this.loadData(1);
+        this.loadData();
     };
-    FavoritesComponent.prototype.loadData = function (page) {
+    FavoritesComponent.prototype.loadData = function () {
         this.recipes$ = this.usersService.getUserFavorites();
     };
     FavoritesComponent = __decorate([
