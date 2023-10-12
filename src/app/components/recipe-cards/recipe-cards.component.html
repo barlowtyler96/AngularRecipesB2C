@@ -1,27 +1,41 @@
-<div class="row row-cols-1 row-cols-md-2 g-4 mt-2 mx-xl-4">
-    <div *ngFor="let recipe of recipes;" class="col-xxl-3 col-sm-6">
-        <div class="card card-shadow h-100 fixed-width">
-            <img src="{{recipe.imageUrl}}" class="card-image border border-light border-1" alt="Dish Image">
-            <div class="card-body rounded-2 shadow-lg">
-                <h5 class="card-title text-center">{{recipe.name}}</h5>
-                <p class="card-text">{{ recipe.description | truncate: 140 }}</p>
-            </div>
-            <div class="card-footer">
-                <button (click)="showFullRecipe(recipe.recipeId)" class="btn btn-primary mx-1 border-1 border-black">
-                    View Recipe
-                </button>
-                <button (click)="postUserFavorite(recipe.recipeId, true)" class="btn btn-primary border border-black"
-                    *ngIf="userFavoriteIds.includes(recipe.recipeId); else elseBlock">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <ng-template #elseBlock>
-                    <button (click)="postUserFavorite(recipe.recipeId, false)"
-                        class="btn btn-primary border border-black">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-                </ng-template>
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-2 mb-2 mx-xl-4">
+        <div *ngFor="let recipe of recipes;" class="col-xxl-3 col-sm-6">
+            <div class="card card-shadow h-100 fixed-width">
+                <img src="{{recipe.imageUrl}}" class="card-image border border-light border-1" alt="Dish Image">
+                <div class="card-body rounded-2 shadow-lg">
+                    <h5 class="card-title text-center">{{recipe.name}}</h5>
+                    <p class="card-text">{{ recipe.description | truncate: 140 }}</p>
+                </div>
+                <div class="card-footer">
+                    <div *ngIf="isSignedIn; else elseBlock">
+                        <button (click)="showFullRecipe(recipe.recipeId)" class="btn btn-primary mx-1 border-1 border-black">
+                            View Recipe
+                        </button>
+                        <button (click)="postUserFavorite(recipe.recipeId, true)"
+                            class="btn btn-primary border border-black"
+                            *ngIf="userFavoriteIds.includes(recipe.recipeId); else elseBlock2">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                        <ng-template #elseBlock2>
+                            <button (click)="postUserFavorite(recipe.recipeId, false)"
+                                class="btn btn-primary border border-black">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </ng-template>
+                    </div>
+                    <ng-template #elseBlock>
+                        <button (click)="showFullRecipe(recipe.recipeId)" class="btn btn-primary mx-1 border-1 border-black">
+                            View Recipe
+                        </button>
+                        <button (click)="postUserFavorite(recipe.recipeId, false)"
+                            class="btn btn-primary border border-black">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </ng-template>
+                </div>
             </div>
         </div>
+        <app-full-recipe [recipeId]="selectedRecipeId" *ngIf="selectedRecipeId"></app-full-recipe>
     </div>
-    <app-full-recipe [recipeId]="selectedRecipeId" *ngIf="selectedRecipeId"></app-full-recipe>
 </div>
