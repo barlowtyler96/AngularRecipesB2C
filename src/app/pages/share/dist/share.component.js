@@ -19,14 +19,14 @@ var ShareComponent = /** @class */ (function () {
     }
     ShareComponent.prototype.ngOnInit = function () {
         this.recipeForm = this.fb.group({
-            name: ['', forms_1.Validators.required],
-            description: ['', forms_1.Validators.required],
-            instructions: ['', forms_1.Validators.required],
+            name: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(100)]],
+            description: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(225)]],
+            instructions: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(2000)]],
             imageUrl: [''],
             recipeIngredients: this.fb.array([
                 this.fb.group({
                     ingredientName: ['', forms_1.Validators.required],
-                    unit: ['', forms_1.Validators.required],
+                    unit: [''],
                     amount: [0, forms_1.Validators.required]
                 })
             ])
@@ -39,6 +39,31 @@ var ShareComponent = /** @class */ (function () {
             data: []
         };
     };
+    Object.defineProperty(ShareComponent.prototype, "name", {
+        get: function () { return this.recipeForm.get('name'); },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(ShareComponent.prototype, "description", {
+        get: function () { return this.recipeForm.get('description'); },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(ShareComponent.prototype, "instructions", {
+        get: function () { return this.recipeForm.get('instructions'); },
+        enumerable: false,
+        configurable: true
+    });
+    ShareComponent.prototype.getIngredient = function (index) {
+        return this.recipeIngredients.at(index).get('ingredientName');
+    };
+    Object.defineProperty(ShareComponent.prototype, "recipeIngredients", {
+        get: function () {
+            return this.recipeForm.get('recipeIngredients');
+        },
+        enumerable: false,
+        configurable: true
+    });
     ShareComponent.prototype.submit = function () {
         if (this.recipeForm.valid) {
             if (this.selectedFile != null) {
@@ -65,13 +90,15 @@ var ShareComponent = /** @class */ (function () {
     ShareComponent.prototype.postImageAndRecipe = function () {
         var _this = this;
         var baseBlobUrl = 'https://recipesvaultimages.blob.core.windows.net/recipevaultimages/';
-        var newFileName = this.generateNewFileName();
+        var newFileName = this.generateNewFileName(this.selectedFile.name.split('.').pop());
         var imgFormData = new FormData();
         imgFormData.append(newFileName, this.selectedFile, newFileName);
         this.recipeForm.get('imageUrl').setValue("" + baseBlobUrl + newFileName);
-        this.usersService.upload(imgFormData)
+        this.usersService
+            .upload(imgFormData)
             .subscribe(function (res) {
-            _this.usersService.postSharedRecipe(_this.recipeForm)
+            _this.usersService
+                .postSharedRecipe(_this.recipeForm)
                 .subscribe(function (res) {
                 _this.createdRecipeId = res;
                 _this.recipesService
@@ -98,15 +125,8 @@ var ShareComponent = /** @class */ (function () {
             this.selectedFile = inputElement.files[0];
         }
     };
-    Object.defineProperty(ShareComponent.prototype, "recipeIngredients", {
-        get: function () {
-            return this.recipeForm.get('recipeIngredients');
-        },
-        enumerable: false,
-        configurable: true
-    });
     ShareComponent.prototype.addRecipeIngredient = function () {
-        this.recipeIngredients.push(this.fb.control({
+        this.recipeIngredients.push(this.fb.group({
             ingredientName: [''],
             amount: [0],
             unit: ['']
@@ -115,10 +135,9 @@ var ShareComponent = /** @class */ (function () {
     ShareComponent.prototype.deleteRecipeIngredient = function (index) {
         this.recipeIngredients.removeAt(index);
     };
-    ShareComponent.prototype.generateNewFileName = function () {
-        var timestamp = new Date().getTime();
-        var randomString = Math.random().toString(36).substring(7);
-        return timestamp + "_" + randomString + "_" + this.selectedFile.name;
+    ShareComponent.prototype.generateNewFileName = function (fileExtension) {
+        var newFileName = crypto.randomUUID();
+        return newFileName + "." + fileExtension;
     };
     ShareComponent = __decorate([
         core_1.Component({

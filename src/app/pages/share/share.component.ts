@@ -25,14 +25,14 @@ export class ShareComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipeForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      instructions: ['', Validators.required],
+      name: ['', [Validators.required, Validators.maxLength(100)]],
+      description: ['', [Validators.required, Validators.maxLength(225)]],
+      instructions: ['', [Validators.required, Validators.maxLength(2000)]],
       imageUrl: [''],
       recipeIngredients: this.fb.array([
         this.fb.group({
           ingredientName: ['', Validators.required],
-          unit: ['', Validators.required],
+          unit: [''],
           amount: [0, Validators.required]
         })
       ])
@@ -45,6 +45,15 @@ export class ShareComponent implements OnInit {
       totalPages: 0,
       data: []
     }
+  }
+  get name() { return this.recipeForm.get('name'); }
+  get description() { return this.recipeForm.get('description'); }
+  get instructions() { return this.recipeForm.get('instructions'); }
+  getIngredient(index: number) {
+    return this.recipeIngredients.at(index).get('ingredientName');
+  }
+  get recipeIngredients() {
+    return this.recipeForm.get('recipeIngredients') as FormArray;
   }
 
   submit() {
@@ -72,15 +81,17 @@ export class ShareComponent implements OnInit {
 
   postImageAndRecipe() {
     const baseBlobUrl = 'https://recipesvaultimages.blob.core.windows.net/recipevaultimages/';
-    const newFileName = this.generateNewFileName();
-    const imgFormData = new FormData();
+    const newFileName = this.generateNewFileName(this.selectedFile!.name.split('.').pop()!);
 
+    const imgFormData = new FormData();
     imgFormData.append(newFileName, this.selectedFile!, newFileName);
     this.recipeForm.get('imageUrl')!.setValue(`${baseBlobUrl}${newFileName}`);
 
-    this.usersService.upload(imgFormData)
+    this.usersService
+      .upload(imgFormData)
       .subscribe(res => {
-        this.usersService.postSharedRecipe(this.recipeForm)
+        this.usersService
+          .postSharedRecipe(this.recipeForm)
           .subscribe((res: number) => {
             this.createdRecipeId = res;
             this.recipesService
@@ -108,12 +119,8 @@ export class ShareComponent implements OnInit {
     }
   }
 
-  get recipeIngredients() {
-    return this.recipeForm.get('recipeIngredients') as FormArray;
-  }
-  
   addRecipeIngredient() {
-    this.recipeIngredients.push(this.fb.control({
+    this.recipeIngredients.push(this.fb.group({
       ingredientName: [''],
       amount: [0],
       unit: ['']
@@ -124,9 +131,8 @@ export class ShareComponent implements OnInit {
     this.recipeIngredients.removeAt(index);
   }
 
-  generateNewFileName() {
-    const timestamp = new Date().getTime();
-    const randomString = Math.random().toString(36).substring(7);
-    return `${timestamp}_${randomString}_${this.selectedFile!.name}`
+  generateNewFileName(fileExtension: string) {
+    const newFileName = crypto.randomUUID();
+    return `${newFileName}.${fileExtension}`
   }
 }
