@@ -27,6 +27,9 @@ var UsersService = /** @class */ (function () {
         var url = environment_development_1.environment.apiBaseUrl + "Users/favorite/" + recipeId;
         return this.http.post(url, {});
     };
+    UsersService.prototype.getUserCreatedRecipes = function () {
+        return this.http.get(environment_development_1.environment.apiBaseUrl + "Users/myrecipes");
+    };
     UsersService.prototype.upload = function (formData) {
         return this.http.post(environment_development_1.environment.apiBaseUrl + "Users/upload", formData);
     };

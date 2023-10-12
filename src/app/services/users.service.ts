@@ -31,6 +31,10 @@ export class UsersService {
     return this.http.post(url, {});
   }
 
+  getUserCreatedRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${environment.apiBaseUrl}Users/myrecipes`)
+  }
+
   public upload(formData: FormData) {
     return this.http.post<{ path: string }>(
       `${environment.apiBaseUrl}Users/upload`,
