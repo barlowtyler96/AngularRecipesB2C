@@ -8,25 +8,28 @@
         </button>
         <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="page-tab" routerLinkActive="active" routerLink="/home" ariaCurrentWhenActive="page">
+                <li class="page-tab" routerLinkActive="active" routerLink="/home" ariaCurrentWhenActive="page" title="Home">
                     <div><i class="fa-solid fa-home fa-lg"></i> Home</div>
                 </li>
-                <li class="page-tab" routerLinkActive="active" routerLink="/browse" ariaCurrentWhenActive="page">
+                <li class="page-tab" routerLinkActive="active" routerLink="/browse" ariaCurrentWhenActive="page" title="Browse">
                     <div><i class="fa-solid fa-magnifying-glass fa-lg"></i> Browse
                     </div>
                 </li>
-                <li class="page-tab" routerLinkActive="active" routerLink="/share" ariaCurrentWhenActive="page">
+                <li class="page-tab" routerLinkActive="active" routerLink="/share" ariaCurrentWhenActive="page"  title="Share a Recipe">
                     <div><i class="fa-solid fa-plus fa-xl"></i> Share</div>
                 </li>
-                <li class="page-tab" routerLinkActive="active" routerLink="/yourShares" ariaCurrentWhenActive="page">
-                    <div><i class="fa-solid fa-cloud-arrow-up fa-lg"></i> Your Shares</div>
+                <li class="page-tab" routerLinkActive="active" routerLink="/yourShares" ariaCurrentWhenActive="page"  title="Your Shares">
+                    <div><i class="fa-solid fa-person-circle-plus fa-xl"></i> Your Shares</div>
+                </li>
+                <li class="page-tab" routerLinkActive="active" routerLink="/favorites" ariaCurrentWhenActive="page" title="Your Favorites">
+                    <div><i class="fa-solid fa-heart fa-lg"></i> Favorites</div>
                 </li>
                 <li class="page-tab">
-                    <div *ngIf="!loginDisplay" (click)="login()">
+                    <div *ngIf="!loginDisplay" (click)="login()" title="Login">
                         <i class="fa-solid fa-arrow-right-to-bracket fa-lg" style="color: #85ca7b;"></i>
                         Login
                     </div>
-                    <div *ngIf="loginDisplay" (click)="logout()">
+                    <div *ngIf="loginDisplay" (click)="logout()" title="Logout">
                         <i class="fa-solid fa-arrow-right-to-bracket fa-lg" style="color: #f85a5a;"></i>
                         Logout
                     </div>

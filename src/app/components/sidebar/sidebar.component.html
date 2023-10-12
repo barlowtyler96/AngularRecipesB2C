@@ -1,46 +1,46 @@
 <div class="sidebar">
     <ul class="nav flex-column">
-        <button class="page-tab btn-primary" (click)="toggleSidebar()">
+        <button class="page-tab btn-primary" (click)="toggleSidebar()" title="Toggle Sidebar">
             <i class="fas fa-bars"></i>
         </button>
-        <li class="page-tab" routerLinkActive="active" routerLink="/home" ariaCurrentWhenActive="page">
+        <li class="page-tab" routerLinkActive="active" routerLink="/home" ariaCurrentWhenActive="page" title="Home">
             <div *ngIf="isSidebarExpanded; else elseBlock"><i class="fa-solid fa-home fa-lg"></i> Home</div>
             <ng-template #elseBlock><i class="fa-solid fa-home fa-sm"></i></ng-template>
         </li>
-        <li class="page-tab" routerLinkActive="active" routerLink="/browse" ariaCurrentWhenActive="page">
+        <li class="page-tab" routerLinkActive="active" routerLink="/browse" ariaCurrentWhenActive="page" title="Browse">
             <div *ngIf="isSidebarExpanded; else elseBlock2"><i class="fa-solid fa-magnifying-glass fa-lg"></i> Browse
             </div>
             <ng-template #elseBlock2><i class="fa-solid fa-magnifying-glass fa-sm"></i></ng-template>
         </li>
-        <li class="page-tab" routerLinkActive="active" routerLink="/share" ariaCurrentWhenActive="page">
+        <li class="page-tab" routerLinkActive="active" routerLink="/share" ariaCurrentWhenActive="page" title="Share a Recipe">
             <div *ngIf="isSidebarExpanded; else elseBlock3"><i class="fa-solid fa-plus fa-xl"></i> Share</div>
             <ng-template #elseBlock3><i class="fa-solid fa-plus fa-md"></i></ng-template>
         </li>
-        <li class="page-tab" routerLinkActive="active" routerLink="/yourShares" ariaCurrentWhenActive="page">
-            <div *ngIf="isSidebarExpanded; else elseBlock4"><i class="fa-solid fa-cloud-arrow-up fa-lg"></i> Your
+        <li class="page-tab" routerLinkActive="active" routerLink="/yourShares" ariaCurrentWhenActive="page" title="Your shares">
+            <div *ngIf="isSidebarExpanded; else elseBlock4"><i class="fa-solid fa-person-circle-plus fa-xl"></i> Your
                 Shares</div>
-            <ng-template #elseBlock4><i class="fa-solid fa-cloud-arrow-up fa-sm"></i></ng-template>
+            <ng-template #elseBlock4><i class="fa-solid fa-person-circle-plus fa-md"></i></ng-template>
         </li>
-        <li class="page-tab" routerLinkActive="active" routerLink="/favorites" ariaCurrentWhenActive="page">
+        <li class="page-tab" routerLinkActive="active" routerLink="/favorites" ariaCurrentWhenActive="page" title="Your favorites">
             <div *ngIf="isSidebarExpanded; else elseBlock5"><i class="fa-solid fa-heart fa-lg"></i> Favorites</div>
             <ng-template #elseBlock5><i class="fa-solid fa-heart fa-sm"></i></ng-template>
         </li>
         <li class="page-tab">
             <div *ngIf="isSidebarExpanded; else elseBlock6">
-                <div *ngIf="!loginDisplay" (click)="login()">
+                <div *ngIf="!loginDisplay" (click)="login()" title="Login">
                     <i class="fa-solid fa-arrow-right-to-bracket fa-lg" style="color: #85ca7b;"></i>
                     Login
                 </div>
-                <div *ngIf="loginDisplay" (click)="logout()">
+                <div *ngIf="loginDisplay" (click)="logout()" title="Logout">
                     <i class="fa-solid fa-arrow-right-to-bracket fa-lg" style="color: #f85a5a;"></i>
                     Logout
                 </div>
             </div>
             <ng-template #elseBlock6>
-                <div *ngIf="!loginDisplay" (click)="login()">
+                <div *ngIf="!loginDisplay" (click)="login()"  title="Login">
                     <i class="fa-solid fa-arrow-right-to-bracket" style="color: #85ca7b;"></i>
                 </div>
-                <div *ngIf="loginDisplay" (click)="logout()">
+                <div *ngIf="loginDisplay" (click)="logout()" title="Logout">
                     <i class="fa-solid fa-arrow-right-to-bracket" style="color: #fd7272;"></i>
                 </div>
             </ng-template>
