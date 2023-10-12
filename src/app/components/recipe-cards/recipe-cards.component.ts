@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { EventMessage, EventType, InteractionStatus } from '@azure/msal-browser';
-import { Observable, filter } from 'rxjs';
+import { filter } from 'rxjs';
 import { Recipe } from 'src/app/models/recipe';
 import { UsersService } from 'src/app/services/users.service';
 
