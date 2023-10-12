@@ -24,7 +24,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FullRecipeComponent } from './components/full-recipe/full-recipe.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './components/header/header.component'
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     TruncatePipe,
     SearchBarComponent,
     FullRecipeComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
