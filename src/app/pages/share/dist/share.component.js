@@ -14,6 +14,7 @@ var ShareComponent = /** @class */ (function () {
         this.usersService = usersService;
         this.recipesService = recipesService;
         this.fb = fb;
+        this.headerTitle = "Share";
         this.recipeSubmitted = false;
         this.selectedFile = null;
     }

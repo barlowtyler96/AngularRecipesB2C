@@ -11,6 +11,7 @@ import { RecipesService } from 'src/app/services/recipes.service';
 export class BrowseComponent {
   searchText = '';
   recipePagination$!: Observable<RecipePagination>;
+  headerTitle: string = "Browse";
 
   constructor(private recipesService: RecipesService) { }
   

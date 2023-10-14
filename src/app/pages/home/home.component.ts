@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   recipePagination$!: Observable<RecipePagination>;
+  headerTitle: string = "Recently Added";
 
   constructor(private recipesService: RecipesService) { }
 

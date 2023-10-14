@@ -10,6 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class FavoritesComponent implements OnInit {
   recipes$!: Observable<Recipe[]>;
+  headerTitle: string = "Your Favorites";
 
   constructor(private usersService: UsersService) { }
 

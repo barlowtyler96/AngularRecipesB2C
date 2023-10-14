@@ -11,6 +11,7 @@ var core_1 = require("@angular/core");
 var HomeComponent = /** @class */ (function () {
     function HomeComponent(recipesService) {
         this.recipesService = recipesService;
+        this.headerTitle = "Recently Added";
     }
     HomeComponent.prototype.ngOnInit = function () {
         this.loadData(1);

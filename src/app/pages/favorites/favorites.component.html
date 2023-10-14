@@ -1,3 +1,4 @@
+<app-header [title]="headerTitle"></app-header>
 <div class="container-fluid">
     <div *ngIf="(recipes$ | async) as recipes">
         <app-recipe-cards [recipes]="recipes"></app-recipe-cards>

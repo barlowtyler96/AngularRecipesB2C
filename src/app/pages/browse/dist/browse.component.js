@@ -12,6 +12,7 @@ var BrowseComponent = /** @class */ (function () {
     function BrowseComponent(recipesService) {
         this.recipesService = recipesService;
         this.searchText = '';
+        this.headerTitle = "Browse";
     }
     BrowseComponent.prototype.onSearch = function (searchText) {
         this.searchText = searchText;
