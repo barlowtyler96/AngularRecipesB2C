@@ -1,11 +1,15 @@
-<div class="full-recipe">
-    <div *ngIf="(fullRecipe$ | async) as fullRecipe">
-        <div>{{ fullRecipe.name }}</div>
-        <div>{{ fullRecipe.instructions }}</div>
-        <div *ngFor="let recipeIngredient of fullRecipe.recipeIngredients">
-            <div>{{ recipeIngredient.amount }}</div>
-            <div>{{ recipeIngredient.unit }}</div>
-            <div>{{ recipeIngredient.ingredientName }}</div>
+<div id="fullRecipe" *ngIf="fullRecipe">
+    <div class="row">
+        <div class="col-12 text-center fs-2 mt-4">
+            {{ fullRecipe.name }}
         </div>
+
+        <div class="offset-lg-1 col-lg-5 mt-5 text-center">
+            {{fullRecipe.instructions}} <br>
+            <img src="{{fullRecipe.imageUrl}}">
+        </div>
+        <ul *ngFor="let recipeIngredient of fullRecipe.recipeIngredients" class="offset-lg-1 col-lg-2 col-sm-12 mt-5">
+            <li>{{ recipeIngredient.amount }} {{ recipeIngredient.unit }} {{ recipeIngredient.ingredientName }}</li>
+        </ul>
     </div>
 </div>
