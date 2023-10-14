@@ -17,6 +17,7 @@ var RecipeCardsComponent = /** @class */ (function () {
         this.msalBroadcastService = msalBroadcastService;
         this.userFavoriteIds = [];
         this.isSignedIn = false;
+        this.isShowingRecipe = false;
     }
     RecipeCardsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -46,6 +47,7 @@ var RecipeCardsComponent = /** @class */ (function () {
     };
     RecipeCardsComponent.prototype.showFullRecipe = function (recipeId) {
         this.selectedRecipeId = recipeId;
+        this.isShowingRecipe = !this.isShowingRecipe;
     };
     RecipeCardsComponent.prototype.postUserFavorite = function (recipeId, isFavorite) {
         if (isFavorite) {

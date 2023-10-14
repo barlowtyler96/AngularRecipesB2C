@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { EventMessage, EventType, InteractionStatus } from '@azure/msal-browser';
 import { filter } from 'rxjs';
@@ -13,9 +13,11 @@ import { UsersService } from 'src/app/services/users.service';
 export class RecipeCardsComponent implements OnInit {
   @Input() recipes!: Recipe[];
   @Input() recipe!: Recipe;
+
   userFavoriteIds: number[] = [];
   selectedRecipeId!: number;
-  isSignedIn = false;
+  isSignedIn: boolean = false;
+  isShowingRecipe: boolean = false;
 
   constructor(private usersService: UsersService, private authService: MsalService, private msalBroadcastService: MsalBroadcastService) { }
 
@@ -54,6 +56,7 @@ export class RecipeCardsComponent implements OnInit {
 
   showFullRecipe(recipeId: number) {
     this.selectedRecipeId = recipeId;
+    this.isShowingRecipe = !this.isShowingRecipe;
   }
 
   postUserFavorite(recipeId: number, isFavorite: boolean) {
