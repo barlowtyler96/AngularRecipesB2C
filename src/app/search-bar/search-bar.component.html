@@ -1,4 +1,7 @@
-<div class="row">
-    <input [(ngModel)]="searchText" (keyup.enter)="onSearch()">
-    <button class="btn btn-primary" (click)="onSearch()">Search</button>
+<div class="row text-center">
+    <div class="col-12">
+        <input class="p-3" placeholder="Search recipes, ingredients, etc..." [(ngModel)]="searchText"
+            (keyup.enter)="onSearch()">
+        <button class="p-3 btn btn-primary mx-3" (click)="onSearch()">Search</button>
+    </div>
 </div>
