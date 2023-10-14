@@ -10,11 +10,21 @@ import { RecipesService } from 'src/app/services/recipes.service';
 })
 export class FullRecipeComponent implements OnInit {
   @Input() recipeId!: number;
-  fullRecipe$!: Observable<RecipeFull>;
+  fullRecipe!: RecipeFull;
 
   constructor(private recipesService: RecipesService) {}
 
   ngOnInit() {
-    this.fullRecipe$ = this.recipesService.getFullRecipeById(this.recipeId);
+    this.recipesService.getFullRecipeById(this.recipeId)
+      .subscribe((data) => {
+        this.fullRecipe = data;
+        const recipeElement = document.getElementById("fullRecipe");
+        setTimeout(() => {
+          const recipeElement = document.getElementById("fullRecipe");
+          if (recipeElement) {
+            recipeElement.scrollIntoView({ behavior: 'smooth' });
+          } 
+        }, 150);
+      })
   }
 }

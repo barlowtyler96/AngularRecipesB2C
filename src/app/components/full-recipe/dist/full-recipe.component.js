@@ -13,7 +13,18 @@ var FullRecipeComponent = /** @class */ (function () {
         this.recipesService = recipesService;
     }
     FullRecipeComponent.prototype.ngOnInit = function () {
-        this.fullRecipe$ = this.recipesService.getFullRecipeById(this.recipeId);
+        var _this = this;
+        this.recipesService.getFullRecipeById(this.recipeId)
+            .subscribe(function (data) {
+            _this.fullRecipe = data;
+            var recipeElement = document.getElementById("fullRecipe");
+            setTimeout(function () {
+                var recipeElement = document.getElementById("fullRecipe");
+                if (recipeElement) {
+                    recipeElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 150);
+        });
     };
     __decorate([
         core_1.Input()
