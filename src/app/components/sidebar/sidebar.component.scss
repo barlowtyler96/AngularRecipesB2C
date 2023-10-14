@@ -4,13 +4,13 @@
   position: fixed;
   top: 0;
   left: -250px;
-  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px #000000ff;
   z-index: 1000;
 }
 
 @media (min-width: 768px) {
   .sidebar {
-    left: 0; top:92px; bottom: 0;
+    left: 0;
   }
 }
 
