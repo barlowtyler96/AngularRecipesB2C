@@ -39,5 +39,10 @@
     </div>
     <div *ngIf="isShowingRecipe">
         <app-full-recipe [recipeId]="selectedRecipeId"></app-full-recipe>
+        <div class="text-center">
+            <button (click)="isShowingRecipe = false" class="btn btn-warning mt-4">
+                Hide
+            </button>
+        </div>
     </div>
 </div>
