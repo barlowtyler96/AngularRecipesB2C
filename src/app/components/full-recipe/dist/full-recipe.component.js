@@ -11,13 +11,17 @@ var core_1 = require("@angular/core");
 var FullRecipeComponent = /** @class */ (function () {
     function FullRecipeComponent(recipesService) {
         this.recipesService = recipesService;
+        this.ingredientArray1 = [];
+        this.ingredientArray2 = [];
     }
     FullRecipeComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.recipesService.getFullRecipeById(this.recipeId)
             .subscribe(function (data) {
             _this.fullRecipe = data;
-            var recipeElement = document.getElementById("fullRecipe");
+            var midpoint = Math.ceil(data.recipeIngredients.length / 2);
+            _this.ingredientArray1 = data.recipeIngredients.slice(0, midpoint);
+            _this.ingredientArray2 = data.recipeIngredients.slice(midpoint);
             setTimeout(function () {
                 var recipeElement = document.getElementById("fullRecipe");
                 if (recipeElement) {
