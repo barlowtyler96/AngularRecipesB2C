@@ -23,6 +23,7 @@ exports.__esModule = true;
 exports.SidebarComponent = void 0;
 var core_1 = require("@angular/core");
 var msal_angular_1 = require("@azure/msal-angular");
+var auth_config_1 = require("src/app/auth-config");
 var SidebarComponent = /** @class */ (function () {
     function SidebarComponent(msalGuardConfig, authService) {
         this.msalGuardConfig = msalGuardConfig;
@@ -45,6 +46,14 @@ var SidebarComponent = /** @class */ (function () {
         this.authService.logoutRedirect({
             postLogoutRedirectUri: 'http://localhost:4200/'
         });
+    };
+    SidebarComponent.prototype.editProfile = function () {
+        var authority = auth_config_1.b2cPolicies.authorities.editProfile.authority;
+        var editProfileRequest = {
+            scopes: ['openid', 'profile'],
+            authority: authority
+        };
+        this.authService.loginRedirect(__assign({}, editProfileRequest));
     };
     __decorate([
         core_1.Input()

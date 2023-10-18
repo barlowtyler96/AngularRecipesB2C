@@ -45,5 +45,14 @@
                 </div>
             </ng-template>
         </li>
+        <li class="page-tab" *ngIf="loginDisplay" (click)="editProfile()" title="Edit Profile">
+            <div *ngIf="isSidebarExpanded; else elseBlock7">
+                <i class="fa-solid fa-pen-to-square" style="color: #ef8f4a;"></i>
+                    Edit Profile
+            </div>
+            <ng-template #elseBlock7>
+                <i class="fa-solid fa-pen-to-square" style="color: #ef8f4a;"></i>
+            </ng-template>
+        </li>
     </ul>
 </div>
