@@ -1,6 +1,7 @@
 import { Component, Inject, Input } from '@angular/core';
 import { MSAL_GUARD_CONFIG, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { RedirectRequest } from '@azure/msal-browser';
+import { b2cPolicies } from 'src/app/auth-config';
 
 @Component({
   selector: 'app-navbar',
@@ -23,5 +24,15 @@ export class NavbarComponent {
     this.authService.logoutRedirect({
       postLogoutRedirectUri: 'http://localhost:4200/'
     });
+  }
+
+  editProfile() {
+    const authority = b2cPolicies.authorities.editProfile.authority;
+    const editProfileRequest = {
+      scopes: ['openid', 'profile'],
+      authority: authority,
+    };
+
+    this.authService.loginRedirect({ ...editProfileRequest } as RedirectRequest);
   }
 }
