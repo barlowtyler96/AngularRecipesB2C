@@ -8,19 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.RecipesService = void 0;
 var core_1 = require("@angular/core");
-var environment_development_1 = require("src/environments/environment.development");
+var environment_1 = require("src/environments/environment");
 var RecipesService = /** @class */ (function () {
     function RecipesService(http) {
         this.http = http;
     }
     RecipesService.prototype.getRecipePagination = function (page, pageSize) {
-        return this.http.get(environment_development_1.environment.apiBaseUrl + "recipes/recent?page=" + page + "&pageSize=" + pageSize);
+        return this.http.get(environment_1.environment.apiBaseUrl + "recipes/recent?page=" + page + "&pageSize=" + pageSize);
     };
     RecipesService.prototype.getRecipePaginationByKeyword = function (keyword, page, pageSize) {
-        return this.http.get(environment_development_1.environment.apiBaseUrl + "recipes/search?keyword=" + keyword + "&page=" + page + "&pageSize=" + pageSize);
+        return this.http.get(environment_1.environment.apiBaseUrl + "recipes/search?keyword=" + keyword + "&page=" + page + "&pageSize=" + pageSize);
     };
     RecipesService.prototype.getFullRecipeById = function (recipeId) {
-        return this.http.get(environment_development_1.environment.apiBaseUrl + "recipes/" + recipeId);
+        return this.http.get(environment_1.environment.apiBaseUrl + "recipes/" + recipeId);
     };
     RecipesService = __decorate([
         core_1.Injectable({

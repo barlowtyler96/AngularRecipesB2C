@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RecipePagination } from '../models/recipe'
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { RecipeFull } from '../models/recipe-full';
 
