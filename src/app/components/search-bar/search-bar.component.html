@@ -1,0 +1,6 @@
+<div class="row text-center mb-5 justify-content-center">
+    <div class="col-4 d-flex align-items-center">
+        <input class="form-control mx-3 p-3" placeholder="Search recipes, ingredients, etc..." [(ngModel)]="searchText" (keyup.enter)="onSearch()">
+        <button class="btn btn-primary p-3" (click)="onSearch()">Search</button>
+    </div>
+</div>
