@@ -22,7 +22,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { RecipeCardsComponent } from './components/recipe-cards/recipe-cards.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SearchBarComponent } from './search-bar/search-bar.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FullRecipeComponent } from './components/full-recipe/full-recipe.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component'

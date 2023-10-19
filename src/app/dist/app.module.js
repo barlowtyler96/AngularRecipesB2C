@@ -28,9 +28,10 @@ var pagination_component_1 = require("./components/pagination/pagination.compone
 var recipe_cards_component_1 = require("./components/recipe-cards/recipe-cards.component");
 var truncate_pipe_1 = require("./pipes/truncate.pipe");
 var forms_1 = require("@angular/forms");
-var search_bar_component_1 = require("./search-bar/search-bar.component");
+var search_bar_component_1 = require("./components/search-bar/search-bar.component");
 var full_recipe_component_1 = require("./components/full-recipe/full-recipe.component");
 var animations_1 = require("@angular/platform-browser/animations");
+var header_component_1 = require("./components/header/header.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -50,6 +51,7 @@ var AppModule = /** @class */ (function () {
                 truncate_pipe_1.TruncatePipe,
                 search_bar_component_1.SearchBarComponent,
                 full_recipe_component_1.FullRecipeComponent,
+                header_component_1.HeaderComponent,
             ],
             imports: [
                 platform_browser_1.BrowserModule,
