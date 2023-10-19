@@ -1,5 +1,5 @@
 import { LogLevel, Configuration, BrowserCacheLocation } from '@azure/msal-browser';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
  
 export const b2cPolicies = {

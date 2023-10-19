@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.loginRequest = exports.protectedResources = exports.msalConfig = exports.b2cPolicies = void 0;
 var msal_browser_1 = require("@azure/msal-browser");
-var environment_development_1 = require("src/environments/environment.development");
+var environment_1 = require("src/environments/environment");
 var isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 exports.b2cPolicies = {
     names: {
@@ -42,7 +42,7 @@ exports.msalConfig = {
 };
 exports.protectedResources = {
     culinarySharesApi: {
-        endpoint: environment_development_1.environment.apiBaseUrl + "Users",
+        endpoint: environment_1.environment.apiBaseUrl + "Users",
         scopes: ["https://recipesb2corganization.onmicrosoft.com/ec576dc8-cdb9-4151-a774-9a9be9495c02/User.Read.Write"]
     }
 };
