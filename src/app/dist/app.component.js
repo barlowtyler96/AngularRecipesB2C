@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -41,19 +30,6 @@ var AppComponent = /** @class */ (function () {
             .pipe(rxjs_1.filter(function (status) { return status === msal_browser_1.InteractionStatus.None; }), rxjs_1.takeUntil(this._destroying$))
             .subscribe(function () {
             _this.setLoginDisplay();
-        });
-    };
-    AppComponent.prototype.login = function () {
-        if (this.msalGuardConfig.authRequest) {
-            this.authService.loginRedirect(__assign({}, this.msalGuardConfig.authRequest));
-        }
-        else {
-            this.authService.loginRedirect();
-        }
-    };
-    AppComponent.prototype.logout = function () {
-        this.authService.logoutRedirect({
-            postLogoutRedirectUri: 'http://localhost:4200'
         });
     };
     AppComponent.prototype.setLoginDisplay = function () {
