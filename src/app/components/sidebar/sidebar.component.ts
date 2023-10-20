@@ -2,6 +2,7 @@ import { Component, Inject, Input } from '@angular/core';
 import { MSAL_GUARD_CONFIG, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { RedirectRequest } from '@azure/msal-browser';
 import { b2cPolicies } from 'src/app/auth-config';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -28,14 +29,13 @@ export class SidebarComponent {
 
   logout() {
     this.authService.logoutRedirect({
-      postLogoutRedirectUri: 'http://localhost:4200/'
+      postLogoutRedirectUri: `${environment.logoutRedirectUrl}`
     });
   }
 
   editProfile() {
     const authority = b2cPolicies.authorities.editProfile.authority;
     const editProfileRequest = {
-      scopes: ['openid', 'profile'],
       authority: authority,
     };
 
