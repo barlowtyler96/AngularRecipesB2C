@@ -4,6 +4,7 @@ import { fader } from './route-animations'
 import { Subject, filter, takeUntil } from 'rxjs';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { InteractionStatus, RedirectRequest } from '@azure/msal-browser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -32,20 +33,6 @@ export class AppComponent implements OnInit {
       .subscribe(() => {
         this.setLoginDisplay();
       })
-  }
-
-  login() {
-    if (this.msalGuardConfig.authRequest) {
-      this.authService.loginRedirect({ ...this.msalGuardConfig.authRequest } as RedirectRequest);
-    } else {
-      this.authService.loginRedirect();
-    }
-  }
-
-  logout() {
-    this.authService.logoutRedirect({
-      postLogoutRedirectUri: 'http://localhost:4200'
-    });
   }
 
   setLoginDisplay() {
