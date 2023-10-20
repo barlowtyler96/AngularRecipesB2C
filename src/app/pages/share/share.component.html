@@ -1,7 +1,7 @@
 <app-header [title]="headerTitle"></app-header>
-<div class="container-fluid">
+<div class="container">
     <form [formGroup]="recipeForm" (ngSubmit)="submit()" class="row">
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-3 mb-3">
             <label for="name">Name:</label>
             <input type="text" id="name" formControlName="name" class="form-control" />
 
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group col-md-9">
+        <div class="form-group col-md-9 mb-3">
             <label for="description">Description:</label>
             <input type="text" id="description" formControlName="description" class="form-control" />
 
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-12 mb-3">
             <label for="instructions">Instructions:</label>
             <textarea id="instructions" formControlName="instructions" class="form-control"></textarea>
 
@@ -43,15 +43,14 @@
             </div>
         </div>
 
-
         <div formArrayName="recipeIngredients">
             <div *ngFor="let ingredient of recipeIngredients.controls; let i = index">
                 <div [formGroupName]="i" class="row">
-                    <div class="form-group col-2 mx-3 mx-md-0">
+                    <div class="form-group col-2 mx-md-0">
                         <label for="amount{{i}}">Amount: </label>
                         <input type="number" id="amount{{i}}" class="form-control" formControlName="amount" />
                     </div>
-                    <div class="form-group col-3">
+                    <div class="form-group col-3 mx-3">
                         <label for="unit{{i}}">Unit: </label>
                         <input type="text" id="unit{{i}}" class="form-control" formControlName="unit" />
                     </div>
@@ -72,13 +71,18 @@
                             <i class="fa-solid fa-square-xmark fa-sm"></i>
                         </button>
                     </div>
+                    <div class="form-group">
+                        <button class="btn btn-dark my-2 mb-3" type="button" (click)="addRecipeIngredient()">+ Add another
+                            ingredient</button> <br>
+                        <input class="mb-3" type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event)">
+                    </div>
                 </div>
             </div>
-            <button class="btn btn-dark my-2" type="button" (click)="addRecipeIngredient()">+ Add another ingredient</button> <br>
-            <input type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event)"> <br>
+
             <div class="row">
                 <div>
-                    <button [disabled]="!recipeForm.valid" type="submit" class="btn btn-danger mt-2 form-control">Submit</button>
+                    <button [disabled]="!recipeForm.valid" type="submit"
+                        class="btn btn-danger mt-2 form-control">Submit</button>
                 </div>
             </div>
         </div>
