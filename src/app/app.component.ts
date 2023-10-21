@@ -3,8 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { fader } from './route-animations'
 import { Subject, filter, takeUntil } from 'rxjs';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
-import { InteractionStatus, RedirectRequest } from '@azure/msal-browser';
-import { environment } from 'src/environments/environment';
+import { InteractionStatus } from '@azure/msal-browser';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +18,7 @@ export class AppComponent implements OnInit {
   loginDisplay = false;
   private readonly _destroying$ = new Subject<void>();
 
-  constructor(
-    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration, private broadcastService: MsalBroadcastService, private authService: MsalService) { }
-
+  constructor(private broadcastService: MsalBroadcastService, private authService: MsalService) { }
 
   ngOnInit() {
 
@@ -45,6 +42,6 @@ export class AppComponent implements OnInit {
   }
 
   prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    return outlet && outlet.activatedRouteData['animation'];
   }
 }
