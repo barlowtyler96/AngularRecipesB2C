@@ -35,7 +35,7 @@ exports.msalConfig = {
             loggerCallback: function (logLevel, message, containsPii) {
                 console.log(message);
             },
-            logLevel: msal_browser_1.LogLevel.Verbose,
+            logLevel: msal_browser_1.LogLevel.Error,
             piiLoggingEnabled: false
         }
     }
