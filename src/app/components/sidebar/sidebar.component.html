@@ -1,4 +1,10 @@
 <div class="sidebar">
+    <a *ngIf="isSidebarExpanded; else elseBlock8" class="navbar-brand" href="#">
+        <img class="m-1 mt-3" src="../../../assets/images/culinary-shares-logo-2.png" height="60" alt="CulinaryShares Logo">
+    </a>
+    <ng-template #elseBlock8 class="navbar-brand" href="#">
+        <img class="mt-2" src="../../../favicon.ico" width="59" alt="CulinaryShares Logo">
+    </ng-template>
     <ul class="nav flex-column">
         <button class="page-tab btn-primary" (click)="toggleSidebar()" title="Toggle Sidebar">
             <i class="fas fa-bars"></i>

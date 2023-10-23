@@ -53,7 +53,12 @@ var SidebarComponent = /** @class */ (function () {
         var editProfileRequest = {
             authority: authority
         };
-        this.authService.loginRedirect(__assign({}, editProfileRequest));
+        if (this.msalGuardConfig.authRequest) {
+            this.authService.acquireTokenRedirect(editProfileRequest);
+        }
+        else {
+            this.authService.loginRedirect();
+        }
     };
     __decorate([
         core_1.Input()
