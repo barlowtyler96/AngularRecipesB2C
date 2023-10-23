@@ -71,16 +71,17 @@
                             <i class="fa-solid fa-square-xmark fa-sm"></i>
                         </button>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-dark my-2 mb-3" type="button" (click)="addRecipeIngredient()">+ Add another
-                            ingredient</button> <br>
-                        <input class="mb-3" type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event)">
-                    </div>
+                    
                 </div>
+                
             </div>
-
             <div class="row">
+                <div class="form-group">
+                    <button class="btn btn-dark my-2 mb-3" type="button" (click)="addRecipeIngredient()">+ Add another
+                        ingredient</button>
+                </div>
                 <div>
+                    <input class="mb-3" type="file" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event)">
                     <button [disabled]="!recipeForm.valid" type="submit"
                         class="btn btn-danger mt-2 form-control">Submit</button>
                 </div>
