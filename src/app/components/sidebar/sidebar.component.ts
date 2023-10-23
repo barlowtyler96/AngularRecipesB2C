@@ -38,7 +38,10 @@ export class SidebarComponent {
     const editProfileRequest = {
       authority: authority,
     };
-
-    this.authService.loginRedirect({ ...editProfileRequest } as RedirectRequest);
+    if(this.msalGuardConfig.authRequest) {
+      this.authService.acquireTokenRedirect( editProfileRequest as RedirectRequest )
+    } else {
+      this.authService.loginRedirect();
+    }
   }
 }
