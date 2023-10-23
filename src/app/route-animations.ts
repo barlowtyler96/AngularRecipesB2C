@@ -15,7 +15,7 @@ export const fader =
       ], { optional: true }),
       // Animate the new page in
       query(':enter', [
-        animate('600ms ease', style({ opacity: 1, transform: 'scale(1) translateY(0)' })),
+        animate('1200ms ease', style({ opacity: 1, transform: 'scale(1) translateY(0)' })),
       ],{ optional: true })
     ]),
 ]);

@@ -16,7 +16,7 @@ exports.fader = animations_1.trigger('routeAnimations', [
         ], { optional: true }),
         // Animate the new page in
         animations_1.query(':enter', [
-            animations_1.animate('600ms ease', animations_1.style({ opacity: 1, transform: 'scale(1) translateY(0)' })),
+            animations_1.animate('1200ms ease', animations_1.style({ opacity: 1, transform: 'scale(1) translateY(0)' })),
         ], { optional: true })
     ]),
 ]);
