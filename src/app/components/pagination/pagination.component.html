@@ -1,9 +1,17 @@
 <div class="row-col m-2 text-center mt-5">
-  <button class="btn btn-primary" [disabled]="currentPageNumber === 1" (click)="goToPage(currentPageNumber - 1); "><i
-      class="fa-solid fa-arrow-left fa-xl"></i></button>
+  <button class="btn btn-primary" [disabled]="currentPageNumber === 1" (click)="changePage(currentPageNumber - 1); ">
+    <i class="fa-solid fa-arrow-left fa-xl"></i>
+  </button>
+
   <span class="mx-2">Page {{ currentPageNumber }} of {{ totalPages }}</span>
+
   <button class="btn btn-primary" [disabled]="currentPageNumber === totalPages"
-    (click)="goToPage(currentPageNumber + 1)"><i class="fa-solid fa-arrow-right fa-xl"></i></button>
+    (click)="changePage(currentPageNumber + 1)"><i class="fa-solid fa-arrow-right fa-xl"></i>
+  </button>
+
+  <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="changeItemsPerPage()">
+    <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+  </select>
 
   <div> &nbsp; &nbsp; Total Results: {{totalCount}}</div>
 </div>

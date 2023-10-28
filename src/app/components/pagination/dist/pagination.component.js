@@ -10,13 +10,21 @@ exports.PaginationComponent = void 0;
 var core_1 = require("@angular/core");
 var PaginationComponent = /** @class */ (function () {
     function PaginationComponent() {
+        this.itemsPerPageOptions = [8, 16, 24, 32];
+        this.currentPageNumber = 1;
+        this.itemsPerPage = 8;
         this.pageChange = new core_1.EventEmitter();
+        this.itemsPerPageChange = new core_1.EventEmitter();
     }
-    PaginationComponent.prototype.goToPage = function (page) {
-        if (page >= 1 && page <= this.totalPages) {
-            this.pageChange.emit(page);
-            this.scrollToTop();
+    PaginationComponent.prototype.changePage = function (newPage) {
+        if (newPage >= 1 && newPage <= this.totalPages) {
+            this.currentPageNumber = newPage;
+            this.pageChange.emit(this.currentPageNumber);
         }
+    };
+    PaginationComponent.prototype.changeItemsPerPage = function () {
+        this.itemsPerPageChange.emit(this.itemsPerPage); // Emit itemsPerPage changes
+        this.currentPageNumber = 1; // Reset to the first page when changing items per page
     };
     PaginationComponent.prototype.scrollToTop = function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -29,13 +37,22 @@ var PaginationComponent = /** @class */ (function () {
     ], PaginationComponent.prototype, "pageSize");
     __decorate([
         core_1.Input()
+    ], PaginationComponent.prototype, "totalPages");
+    __decorate([
+        core_1.Input()
+    ], PaginationComponent.prototype, "itemsPerPageOptions");
+    __decorate([
+        core_1.Input()
     ], PaginationComponent.prototype, "currentPageNumber");
     __decorate([
         core_1.Input()
-    ], PaginationComponent.prototype, "totalPages");
+    ], PaginationComponent.prototype, "itemsPerPage");
     __decorate([
         core_1.Output()
     ], PaginationComponent.prototype, "pageChange");
+    __decorate([
+        core_1.Output()
+    ], PaginationComponent.prototype, "itemsPerPageChange");
     PaginationComponent = __decorate([
         core_1.Component({
             selector: 'app-pagination',
