@@ -11,7 +11,7 @@ import { RecipeFull } from '../models/recipe-full';
 export class RecipesService {
   constructor(private http: HttpClient) { }
 
-  public getRecipePagination(page: number, pageSize:number): Observable<RecipePagination> {
+  public getRecentRecipePagination(page: number, pageSize:number): Observable<RecipePagination> {
     return this.http.get<RecipePagination>(`${environment.apiBaseUrl}recipes/recent?page=${page}&pageSize=${pageSize}`)
   }
 
