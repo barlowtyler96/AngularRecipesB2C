@@ -11,13 +11,20 @@ var core_1 = require("@angular/core");
 var HomeComponent = /** @class */ (function () {
     function HomeComponent(recipesService) {
         this.recipesService = recipesService;
+        this.currentPage = 1;
+        this.itemsPerPage = 8;
         this.headerTitle = "Recently Added";
     }
     HomeComponent.prototype.ngOnInit = function () {
-        this.loadData(1);
+        this.loadData(this.currentPage); // Initial data load
     };
     HomeComponent.prototype.loadData = function (page) {
-        this.recipePagination$ = this.recipesService.getRecipePagination(page, 8);
+        this.currentPage = page; // Update the currentPage property
+        this.recipePagination$ = this.recipesService.getRecentRecipePagination(page, this.itemsPerPage);
+    };
+    HomeComponent.prototype.onItemsPerPageChange = function (newItemsPerPage) {
+        this.itemsPerPage = newItemsPerPage; // Update the itemsPerPage property
+        this.loadData(1); // Reload data with the new itemsPerPage
     };
     HomeComponent = __decorate([
         core_1.Component({

@@ -10,15 +10,23 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   recipePagination$!: Observable<RecipePagination>;
+  currentPage: number = 1;
+  itemsPerPage: number = 8;
   headerTitle: string = "Recently Added";
 
   constructor(private recipesService: RecipesService) { }
 
   ngOnInit() {
-    this.loadData(1);
+    this.loadData(this.currentPage); // Initial data load
   }
 
   loadData(page: number) {
-    this.recipePagination$ = this.recipesService.getRecipePagination(page, 8);
+    this.currentPage = page; // Update the currentPage property
+    this.recipePagination$ = this.recipesService.getRecentRecipePagination(page, this.itemsPerPage);
+  }
+
+  onItemsPerPageChange(newItemsPerPage: number) {
+    this.itemsPerPage = newItemsPerPage; // Update the itemsPerPage property
+    this.loadData(1); // Reload data with the new itemsPerPage
   }
 }

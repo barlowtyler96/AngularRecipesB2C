@@ -4,7 +4,8 @@
   <app-recipe-cards [recipes]="recipePagination.data"></app-recipe-cards>
 </div>
 <div *ngIf="(recipePagination$ | async) as recipePagination">
-  <app-pagination [totalCount]="recipePagination.totalCount" [pageSize]="recipePagination.pageSize"
-    [currentPageNumber]="recipePagination.currentPageNumber" [totalPages]="recipePagination.totalPages"
-    (pageChange)="loadData($event)"></app-pagination>
+
+  <app-pagination [totalCount]="recipePagination.totalCount" [currentPageNumber]="recipePagination.currentPageNumber" [itemsPerPage]="recipePagination.pageSize"
+    [totalPages]="recipePagination.totalPages" (pageChange)="loadData($event)" (itemsPerPageChange)="onItemsPerPageChange($event)" >
+  </app-pagination>
 </div>
