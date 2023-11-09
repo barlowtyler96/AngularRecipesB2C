@@ -12,12 +12,12 @@ export class HomeComponent implements OnInit {
   recipePagination$!: Observable<RecipePagination>;
   currentPage: number = 1;
   itemsPerPage: number = 8;
-  headerTitle: string = "Recently Added";
-
+  headerTitle!: string;
   constructor(private recipesService: RecipesService) { }
 
   ngOnInit() {
     this.loadData(this.currentPage); // Initial data load
+    this.headerTitle = "Home";
   }
 
   loadData(page: number) {

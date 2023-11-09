@@ -13,10 +13,10 @@ var HomeComponent = /** @class */ (function () {
         this.recipesService = recipesService;
         this.currentPage = 1;
         this.itemsPerPage = 8;
-        this.headerTitle = "Recently Added";
     }
     HomeComponent.prototype.ngOnInit = function () {
         this.loadData(this.currentPage); // Initial data load
+        this.headerTitle = "Home";
     };
     HomeComponent.prototype.loadData = function (page) {
         this.currentPage = page; // Update the currentPage property

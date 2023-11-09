@@ -11,10 +11,14 @@ import { RecipesService } from 'src/app/services/recipes.service';
 export class BrowseComponent {
   searchText = '';
   recipePagination$!: Observable<RecipePagination>;
-  headerTitle: string = "Browse";
+  headerTitle!: string;
 
   constructor(private recipesService: RecipesService) { }
   
+  ngOnInit() {
+    this.headerTitle = "Browse";
+  }
+
   onSearch(searchText: string) { 
     this.searchText = searchText
     this.loadData(1);

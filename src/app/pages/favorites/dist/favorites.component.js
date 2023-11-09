@@ -11,10 +11,10 @@ var core_1 = require("@angular/core");
 var FavoritesComponent = /** @class */ (function () {
     function FavoritesComponent(usersService) {
         this.usersService = usersService;
-        this.headerTitle = "Your Favorites";
     }
     FavoritesComponent.prototype.ngOnInit = function () {
         this.loadData();
+        this.headerTitle = "Favorites";
     };
     FavoritesComponent.prototype.loadData = function () {
         this.recipes$ = this.usersService.getUserFavorites();

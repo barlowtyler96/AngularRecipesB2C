@@ -14,11 +14,11 @@ var ShareComponent = /** @class */ (function () {
         this.usersService = usersService;
         this.recipesService = recipesService;
         this.fb = fb;
-        this.headerTitle = "Share";
         this.recipeSubmitted = false;
         this.selectedFile = null;
     }
     ShareComponent.prototype.ngOnInit = function () {
+        this.headerTitle = "Share";
         this.recipeForm = this.fb.group({
             name: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(100)]],
             description: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(225)]],

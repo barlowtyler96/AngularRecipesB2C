@@ -11,10 +11,10 @@ var core_1 = require("@angular/core");
 var YourSharesComponent = /** @class */ (function () {
     function YourSharesComponent(usersService) {
         this.usersService = usersService;
-        this.headerTitle = "Your Shares";
     }
     YourSharesComponent.prototype.ngOnInit = function () {
         this.loadData();
+        this.headerTitle = "Your Shares";
     };
     YourSharesComponent.prototype.loadData = function () {
         this.recipes$ = this.usersService.getUserCreatedRecipes();

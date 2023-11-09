@@ -11,20 +11,20 @@ import { RecipeFull } from 'src/app/models/recipe-full';
   styleUrls: ['./share.component.scss']
 })
 export class ShareComponent implements OnInit {
-  headerTitle: string = "Share";
   createdRecipeId!: number;
   createdRecipe!: RecipeFull;
   createdRecipes!: RecipePagination;
   recipeForm!: FormGroup;
   recipeSubmitted: boolean = false;
   selectedFile: File | null = null;
-
+  headerTitle!: string;
   constructor(
     private usersService: UsersService,
     private recipesService: RecipesService,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.headerTitle = "Share"
     this.recipeForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(100)]],
       description: ['', [Validators.required, Validators.maxLength(225)]],

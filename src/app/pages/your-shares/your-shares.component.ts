@@ -10,12 +10,13 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class YourSharesComponent implements OnInit {
   recipes$!: Observable<Recipe[]>;
-  headerTitle: string = "Your Shares";
+  headerTitle!: string;
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
     this.loadData();
+    this.headerTitle = "Your Shares"
   }
 
   loadData() {
