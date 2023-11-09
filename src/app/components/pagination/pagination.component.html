@@ -1,17 +1,27 @@
-<div class="row-col m-2 text-center mt-5">
-  <button class="btn btn-primary" [disabled]="currentPageNumber === 1" (click)="changePage(currentPageNumber - 1); ">
-    <i class="fa-solid fa-arrow-left fa-xl"></i>
-  </button>
+<div class="container">
+  <div class="row m-2 mt-5 justify-content-end">
+    <div class="col-md-4 col-12 d-flex align-items-center justify-content-center">
+      <button class="btn btn-primary" [disabled]="currentPageNumber === 1" (click)="changePage(currentPageNumber - 1);">
+        <i class="fa-solid fa-arrow-left fa-xl"></i>
+      </button>
 
-  <span class="mx-2">Page {{ currentPageNumber }} of {{ totalPages }}</span>
+      <span class="mx-2">Page {{ currentPageNumber }} of {{ totalPages }}</span>
 
-  <button class="btn btn-primary" [disabled]="currentPageNumber === totalPages"
-    (click)="changePage(currentPageNumber + 1)"><i class="fa-solid fa-arrow-right fa-xl"></i>
-  </button>
+      <button class="btn btn-primary" [disabled]="currentPageNumber === totalPages" (click)="changePage(currentPageNumber + 1);">
+        <i class="fa-solid fa-arrow-right fa-xl"></i>
+      </button>
+    </div>
 
-  <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="changeItemsPerPage()">
-    <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
-  </select>
+    <div class="col-md-4 col-12 d-flex align-items-center justify-content-end justify-content-center mt-2 mt-md-0">
+      <div class="fs-7">Per page:&nbsp;</div>
+      <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="changeItemsPerPage()">
+        <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
 
-  <div> &nbsp; &nbsp; Total Results: {{totalCount}}</div>
+    <div class="col-12 text-center mt-2 mt-md-0">
+      &nbsp;&nbsp;Total Results: {{ totalCount }}
+    </div>
+  </div>
 </div>
+
