@@ -1,27 +1,27 @@
-# AngularRecipesB2C
+# Culinary Shares Angular App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
+#### This is a project I created to practice authentication/authorization, front end design, as well as consuming APIs within angular. I used Azure AD B2C to allow users to create an account and sign in. It also allows users to edit their profile and reset their password. If a user creates an account, they can submit a recipe for review before being permanently added to the site. Users also have the ability to favorite recipes and view recipes they have shared in one place. 
 
-## Development server
+#### I used Angular's documentation & code examples, Stack Overflow, and ChatGPT to complete the project.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Technologies used: 
+* Bootstrap 5
+* Azure AD B2C
+* OAuth 2.0
+* OpenID Connect
+* Angular Components
+* Typescript
 
-## Code scaffolding
+## Features: 
+* User account creation
+* User account editing
+* User password resetting
+* Page-specific Authorization
+* Web API consumption
+* Users with accounts can share recipes
+* Users with accounts can favorite recipes
+* Server-Side paging for pagination components
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Database Schema
+![](ReadMeImages/culinaryshares-entity-relationship.PNG)
