@@ -14,7 +14,9 @@ var SearchBarComponent = /** @class */ (function () {
         this.searchEvent = new core_1.EventEmitter();
     }
     SearchBarComponent.prototype.onSearch = function () {
-        this.searchEvent.emit(this.searchText);
+        if (this.searchText) {
+            this.searchEvent.emit(this.searchText);
+        }
     };
     __decorate([
         core_1.Output()
