@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loadData(this.currentPage); // Initial data load
-    this.headerTitle = "Home";
+    this.headerTitle = "Recently Added";
   }
 
   loadData(page: number) {
