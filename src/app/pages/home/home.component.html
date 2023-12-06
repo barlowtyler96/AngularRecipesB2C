@@ -1,8 +1,12 @@
 <app-header [title]="headerTitle"></app-header>
 
-<div *ngIf="(recipePagination$ | async) as recipePagination">
+<div *ngIf="(recipePagination$ | async) as recipePagination; else loading">
   <app-recipe-cards [recipes]="recipePagination.data"></app-recipe-cards>
 </div>
+<ng-template #loading>
+  <p>Loading... Recipes may take a moment if the site has not been reached in one hour. Azure's cloud Services must reboot.</p>
+</ng-template>
+
 <div *ngIf="(recipePagination$ | async) as recipePagination">
 
   <app-pagination [totalCount]="recipePagination.totalCount" [currentPageNumber]="recipePagination.currentPageNumber" [itemsPerPage]="recipePagination.pageSize"
