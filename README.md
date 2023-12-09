@@ -22,6 +22,9 @@
 * Users with accounts can favorite recipes
 * Server-Side paging for pagination components
 
+## Sample Video: 
+[![Sample Video](https://img.youtube.com/vi/gd2efZiH1UY/0.jpg)](https://www.youtube.com/watch?v=gd2efZiH1UY)
 
 ## Database Schema
 ![](ReadMeImages/culinaryshares-entity-relationship.PNG)
+
