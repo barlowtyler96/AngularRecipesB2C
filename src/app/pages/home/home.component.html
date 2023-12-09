@@ -4,12 +4,20 @@
   <app-recipe-cards [recipes]="recipePagination.data"></app-recipe-cards>
 </div>
 <ng-template #loading>
-  <p>Loading... Recipes may take a moment if the site has not been reached in one hour. Azure's cloud Services must reboot.</p>
+  <div class="mx-md-5 mx-3">
+    <div class="text-center">
+      <p>
+        Loading <i class="fa-solid fa-spinner fa-spin-pulse fa-xl"></i>
+      </p>
+    </div>
+    Recipes may take a moment if the site has not
+    been pinged in one hour. Azure's cloud services must reboot.
+  </div>
 </ng-template>
-
 <div *ngIf="(recipePagination$ | async) as recipePagination">
 
-  <app-pagination [totalCount]="recipePagination.totalCount" [currentPageNumber]="recipePagination.currentPageNumber" [itemsPerPage]="recipePagination.pageSize"
-    [totalPages]="recipePagination.totalPages" (pageChange)="loadData($event)" (itemsPerPageChange)="onItemsPerPageChange($event)" >
+  <app-pagination [totalCount]="recipePagination.totalCount" [currentPageNumber]="recipePagination.currentPageNumber"
+    [itemsPerPage]="recipePagination.pageSize" [totalPages]="recipePagination.totalPages"
+    (pageChange)="loadData($event)" (itemsPerPageChange)="onItemsPerPageChange($event)">
   </app-pagination>
 </div>
