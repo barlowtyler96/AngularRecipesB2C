@@ -36,10 +36,6 @@ var UsersService = /** @class */ (function () {
         return this.http.get(environment_1.environment.apiBaseUrl + "Users/myrecipes")
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
-    UsersService.prototype.upload = function (formData) {
-        return this.http.post(environment_1.environment.apiBaseUrl + "Users/upload", formData)
-            .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
-    };
     UsersService.prototype.postSharedRecipe = function (recipeForm) {
         var recipe = recipeForm.value;
         return this.http.post(environment_1.environment.apiBaseUrl + "Users/share", recipe)

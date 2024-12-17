@@ -13,7 +13,7 @@ export class RecipesService {
   constructor(private http: HttpClient) { }
 
   public getRecentRecipePagination(page: number, pageSize:number): Observable<RecipePagination> {
-    return this.http.get<RecipePagination>(`${environment.apiBaseUrl}recipes/recent?page=${page}&pageSize=${pageSize}`)
+    return this.http.get<RecipePagination>(`${environment.apiBaseUrl}recipes?page=${page}&pageSize=${pageSize}`)
       .pipe(
         retry(3),
         catchError(this.handleError)
@@ -30,6 +30,14 @@ export class RecipesService {
 
   public getFullRecipeById(recipeId: number): Observable<RecipeFull> {
     return this.http.get<RecipeFull>(`${environment.apiBaseUrl}recipes/${recipeId}`)
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
+  public upload(formData: FormData) {
+    return this.http.post<{ path: string }>(`${environment.apiBaseUrl}recipes/upload`, formData)
     .pipe(
       retry(3),
       catchError(this.handleError)

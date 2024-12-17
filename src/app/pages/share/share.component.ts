@@ -88,7 +88,7 @@ export class ShareComponent implements OnInit {
     imgFormData.append(newFileName, this.selectedFile!, newFileName);
     this.recipeForm.get('imageUrl')!.setValue(`${baseBlobUrl}${newFileName}`);
 
-    this.usersService
+    this.recipesService
       .upload(imgFormData)
       .subscribe(res => {
         this.usersService

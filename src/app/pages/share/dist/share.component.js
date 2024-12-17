@@ -95,7 +95,7 @@ var ShareComponent = /** @class */ (function () {
         var imgFormData = new FormData();
         imgFormData.append(newFileName, this.selectedFile, newFileName);
         this.recipeForm.get('imageUrl').setValue("" + baseBlobUrl + newFileName);
-        this.usersService
+        this.recipesService
             .upload(imgFormData)
             .subscribe(function (res) {
             _this.usersService
