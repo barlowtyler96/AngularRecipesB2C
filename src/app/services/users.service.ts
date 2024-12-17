@@ -55,14 +55,6 @@ export class UsersService {
     );
   }
 
-  public upload(formData: FormData) {
-    return this.http.post<{ path: string }>(`${environment.apiBaseUrl}Users/upload`, formData)
-    .pipe(
-      retry(3),
-      catchError(this.handleError)
-    );
-  }
-
   public postSharedRecipe(recipeForm: FormGroup): Observable<number> {
     const recipe: RecipeFull = recipeForm.value
     return this.http.post<number>(`${environment.apiBaseUrl}Users/share`, recipe)

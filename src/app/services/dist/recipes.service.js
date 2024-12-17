@@ -15,7 +15,7 @@ var RecipesService = /** @class */ (function () {
         this.http = http;
     }
     RecipesService.prototype.getRecentRecipePagination = function (page, pageSize) {
-        return this.http.get(environment_1.environment.apiBaseUrl + "recipes/recent?page=" + page + "&pageSize=" + pageSize)
+        return this.http.get(environment_1.environment.apiBaseUrl + "recipes?page=" + page + "&pageSize=" + pageSize)
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
     RecipesService.prototype.getRecipePaginationByKeyword = function (keyword, page, pageSize) {
@@ -24,6 +24,10 @@ var RecipesService = /** @class */ (function () {
     };
     RecipesService.prototype.getFullRecipeById = function (recipeId) {
         return this.http.get(environment_1.environment.apiBaseUrl + "recipes/" + recipeId)
+            .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
+    };
+    RecipesService.prototype.upload = function (formData) {
+        return this.http.post(environment_1.environment.apiBaseUrl + "recipes/upload", formData)
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
     RecipesService.prototype.handleError = function (error) {
