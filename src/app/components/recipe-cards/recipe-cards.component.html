@@ -9,26 +9,26 @@
                 </div>
                 <div class="card-footer">
                     <div *ngIf="isSignedIn; else elseBlock">
-                        <button (click)="showFullRecipe(recipe.recipeId)" class="btn btn-primary mx-1 border-1 border-black">
+                        <button (click)="showFullRecipe(recipe.id)" class="btn btn-primary mx-1 border-1 border-black">
                             View Recipe
                         </button>
-                        <button (click)="postUserFavorite(recipe.recipeId, true)"
+                        <button (click)="postUserFavorite(recipe.id, true)"
                             class="btn btn-primary border border-black"
-                            *ngIf="userFavoriteIds.includes(recipe.recipeId); else elseBlock2">
+                            *ngIf="userFavoriteIds.includes(recipe.id); else elseBlock2">
                             <i class="fa-solid fa-heart"></i>
                         </button>
                         <ng-template #elseBlock2>
-                            <button (click)="postUserFavorite(recipe.recipeId, false)"
+                            <button (click)="postUserFavorite(recipe.id, false)"
                                 class="btn btn-primary border border-black">
                                 <i class="fa-regular fa-heart"></i>
                             </button>
                         </ng-template>
                     </div>
                     <ng-template #elseBlock>
-                        <button (click)="showFullRecipe(recipe.recipeId)" class="btn btn-primary mx-1 border-1 border-black">
+                        <button (click)="showFullRecipe(recipe.id)" class="btn btn-primary mx-1 border-1 border-black">
                             View Recipe
                         </button>
-                        <button (click)="postUserFavorite(recipe.recipeId, false)"
+                        <button (click)="postUserFavorite(recipe.id, false)"
                             class="btn btn-primary border border-black">
                             <i class="fa-regular fa-heart"></i>
                         </button>

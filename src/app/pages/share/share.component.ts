@@ -3,7 +3,7 @@ import { RecipePagination } from 'src/app/models/recipe';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { UsersService } from 'src/app/services/users.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RecipeFull } from 'src/app/models/recipe-full';
+import { Recipe } from 'src/app/models/recipe';
 
 @Component({
   selector: 'app-share',
@@ -12,7 +12,7 @@ import { RecipeFull } from 'src/app/models/recipe-full';
 })
 export class ShareComponent implements OnInit {
   createdRecipeId!: number;
-  createdRecipe!: RecipeFull;
+  createdRecipe!: Recipe;
   createdRecipes!: RecipePagination;
   recipeForm!: FormGroup;
   recipeSubmitted: boolean = false;
@@ -30,9 +30,9 @@ export class ShareComponent implements OnInit {
       description: ['', [Validators.required, Validators.maxLength(225)]],
       instructions: ['', [Validators.required, Validators.maxLength(2000)]],
       imageUrl: [''],
-      recipeIngredients: this.fb.array([
+      ingredients: this.fb.array([
         this.fb.group({
-          ingredientName: ['', Validators.required],
+          name: ['', Validators.required],
           unit: [''],
           amount: [0, Validators.required]
         })
@@ -68,12 +68,12 @@ export class ShareComponent implements OnInit {
   }
 
   postRecipeOnly() {
-    this.usersService.postSharedRecipe(this.recipeForm)
+    this.recipesService.postSharedRecipe(this.recipeForm)
       .subscribe((res: number) => {
         this.createdRecipeId = res;
         this.recipesService
           .getFullRecipeById(this.createdRecipeId)
-          .subscribe((res: RecipeFull) => {
+          .subscribe((res: Recipe) => {
             this.createdRecipes.data.push(res)
             this.recipeSubmitted = true;
           });
@@ -91,13 +91,13 @@ export class ShareComponent implements OnInit {
     this.recipesService
       .upload(imgFormData)
       .subscribe(res => {
-        this.usersService
+        this.recipesService
           .postSharedRecipe(this.recipeForm)
           .subscribe((res: number) => {
             this.createdRecipeId = res;
             this.recipesService
               .getFullRecipeById(this.createdRecipeId)
-              .subscribe((res: RecipeFull) => {
+              .subscribe((res: Recipe) => {
                 this.createdRecipes.data.push(res)
                 this.recipeSubmitted = true;
               });

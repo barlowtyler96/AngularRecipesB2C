@@ -24,9 +24,9 @@ var ShareComponent = /** @class */ (function () {
             description: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(225)]],
             instructions: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(2000)]],
             imageUrl: [''],
-            recipeIngredients: this.fb.array([
+            ingredients: this.fb.array([
                 this.fb.group({
-                    ingredientName: ['', forms_1.Validators.required],
+                    name: ['', forms_1.Validators.required],
                     unit: [''],
                     amount: [0, forms_1.Validators.required]
                 })
@@ -77,7 +77,7 @@ var ShareComponent = /** @class */ (function () {
     };
     ShareComponent.prototype.postRecipeOnly = function () {
         var _this = this;
-        this.usersService.postSharedRecipe(this.recipeForm)
+        this.recipesService.postSharedRecipe(this.recipeForm)
             .subscribe(function (res) {
             _this.createdRecipeId = res;
             _this.recipesService
@@ -98,7 +98,7 @@ var ShareComponent = /** @class */ (function () {
         this.recipesService
             .upload(imgFormData)
             .subscribe(function (res) {
-            _this.usersService
+            _this.recipesService
                 .postSharedRecipe(_this.recipeForm)
                 .subscribe(function (res) {
                 _this.createdRecipeId = res;

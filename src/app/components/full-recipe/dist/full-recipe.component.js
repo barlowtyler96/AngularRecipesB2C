@@ -19,9 +19,9 @@ var FullRecipeComponent = /** @class */ (function () {
         this.recipesService.getFullRecipeById(this.recipeId)
             .subscribe(function (data) {
             _this.fullRecipe = data;
-            var midpoint = Math.ceil(data.recipeIngredients.length / 2);
-            _this.ingredientArray1 = data.recipeIngredients.slice(0, midpoint);
-            _this.ingredientArray2 = data.recipeIngredients.slice(midpoint);
+            var midpoint = Math.ceil(data.ingredients.length / 2);
+            _this.ingredientArray1 = data.ingredients.slice(0, midpoint);
+            _this.ingredientArray2 = data.ingredients.slice(midpoint);
             setTimeout(function () {
                 var recipeElement = document.getElementById("fullRecipe");
                 if (recipeElement) {

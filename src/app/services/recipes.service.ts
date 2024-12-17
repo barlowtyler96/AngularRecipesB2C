@@ -3,8 +3,9 @@ import { RecipePagination } from '../models/recipe'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
-import { RecipeFull } from '../models/recipe-full';
+import { Recipe } from '../models/recipe';
 import { catchError, retry, throwError } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,8 @@ export class RecipesService {
     );
   }
 
-  public getFullRecipeById(recipeId: number): Observable<RecipeFull> {
-    return this.http.get<RecipeFull>(`${environment.apiBaseUrl}recipes/${recipeId}`)
+  public getFullRecipeById(recipeId: number): Observable<Recipe> {
+    return this.http.get<Recipe>(`${environment.apiBaseUrl}recipes/${recipeId}`)
     .pipe(
       retry(3),
       catchError(this.handleError)
@@ -38,6 +39,15 @@ export class RecipesService {
 
   public upload(formData: FormData) {
     return this.http.post<{ path: string }>(`${environment.apiBaseUrl}recipes/upload`, formData)
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
+  public postSharedRecipe(recipeForm: FormGroup): Observable<number> {
+    const recipe: Recipe = recipeForm.value
+    return this.http.post<number>(`${environment.apiBaseUrl}Recipes/share`, recipe)
     .pipe(
       retry(3),
       catchError(this.handleError)

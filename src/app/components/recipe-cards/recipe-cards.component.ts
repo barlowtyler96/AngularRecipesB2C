@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, Input, OnInit,} from '@angular/core';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { EventMessage, EventType, InteractionStatus } from '@azure/msal-browser';
 import { filter } from 'rxjs';

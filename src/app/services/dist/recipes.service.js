@@ -30,6 +30,11 @@ var RecipesService = /** @class */ (function () {
         return this.http.post(environment_1.environment.apiBaseUrl + "recipes/upload", formData)
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
+    RecipesService.prototype.postSharedRecipe = function (recipeForm) {
+        var recipe = recipeForm.value;
+        return this.http.post(environment_1.environment.apiBaseUrl + "Recipes/share", recipe)
+            .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
+    };
     RecipesService.prototype.handleError = function (error) {
         if (error.status === 0) {
             // A client-side or network error occurred. Handle it accordingly.

@@ -10,16 +10,16 @@
             <img class="mt-4 full-recipe-image" src="{{fullRecipe.imageUrl}}">
         </div>
         <div class="offset-lg-1 col-lg-2 col-sm-12 mt-5">
-            <ul *ngFor="let recipeIngredient of ingredientArray1" class="list-unstyled">
+            <ul *ngFor="let ingredient of ingredientArray1" class="list-unstyled">
                 <li class="ingredient-display p-2 bg-white">
-                    {{ recipeIngredient.amount }} {{ recipeIngredient.unit }} {{ recipeIngredient.ingredientName }}
+                    {{ ingredient.amount }} {{ ingredient.unit }} {{ ingredient.name }}
                 </li>
             </ul>
         </div>
         <div class="col-lg-2 col-sm-12 mt-md-5">
-            <ul *ngFor="let recipeIngredient of ingredientArray2" class="list-unstyled">
+            <ul *ngFor="let ingredient of ingredientArray2" class="list-unstyled">
                 <li class="ingredient-display p-2">
-                    {{ recipeIngredient.amount }} {{ recipeIngredient.unit }} {{ recipeIngredient.ingredientName }}
+                    {{ ingredient.amount }} {{ ingredient.unit }} {{ ingredient.name }}
                 </li>
             </ul>
         </div>
