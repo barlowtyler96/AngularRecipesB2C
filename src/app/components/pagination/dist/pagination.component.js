@@ -23,8 +23,8 @@ var PaginationComponent = /** @class */ (function () {
         }
     };
     PaginationComponent.prototype.changeItemsPerPage = function () {
-        this.itemsPerPageChange.emit(this.itemsPerPage); // Emit itemsPerPage changes
-        this.currentPageNumber = 1; // Reset to the first page when changing items per page
+        this.itemsPerPageChange.emit(this.itemsPerPage);
+        this.currentPageNumber = 1;
     };
     PaginationComponent.prototype.scrollToTop = function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });

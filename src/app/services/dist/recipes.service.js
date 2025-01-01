@@ -22,7 +22,7 @@ var RecipesService = /** @class */ (function () {
         return this.http.get(environment_1.environment.apiBaseUrl + "recipes/search?keyword=" + keyword + "&page=" + page + "&pageSize=" + pageSize)
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
-    RecipesService.prototype.getFullRecipeById = function (recipeId) {
+    RecipesService.prototype.getById = function (recipeId) {
         return this.http.get(environment_1.environment.apiBaseUrl + "recipes/" + recipeId)
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };

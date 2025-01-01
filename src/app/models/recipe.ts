@@ -13,7 +13,7 @@ export interface RecipePagination {
     name: string;
     description: string;
     instructions: string;
-    createdBySub: string;
     imageUrl: string;
     ingredients: Ingredient[];
+    isFavorited: boolean;
   }

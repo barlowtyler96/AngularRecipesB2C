@@ -29,7 +29,7 @@ export class RecipesService {
     );
   }
 
-  public getFullRecipeById(recipeId: number): Observable<Recipe> {
+  public getById(recipeId: number): Observable<Recipe> {
     return this.http.get<Recipe>(`${environment.apiBaseUrl}recipes/${recipeId}`)
     .pipe(
       retry(3),
@@ -45,9 +45,9 @@ export class RecipesService {
     );
   }
 
-  public postSharedRecipe(recipeForm: FormGroup): Observable<number> {
+  public postSharedRecipe(recipeForm: FormGroup): Observable<Recipe> {
     const recipe: Recipe = recipeForm.value
-    return this.http.post<number>(`${environment.apiBaseUrl}Recipes/share`, recipe)
+    return this.http.post<Recipe>(`${environment.apiBaseUrl}Recipes/share`, recipe)
     .pipe(
       retry(3),
       catchError(this.handleError)

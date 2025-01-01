@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -14,7 +14,6 @@ export class PaginationComponent {
   @Input() itemsPerPage: number = 8;
   @Output() pageChange = new EventEmitter<number>();
   @Output() itemsPerPageChange = new EventEmitter<number>();
-  
 
   changePage(newPage: number) {
     if (newPage >= 1 && newPage <= this.totalPages) {
@@ -24,8 +23,8 @@ export class PaginationComponent {
   }
   
   changeItemsPerPage() {
-    this.itemsPerPageChange.emit(this.itemsPerPage); // Emit itemsPerPage changes
-    this.currentPageNumber = 1; // Reset to the first page when changing items per page
+    this.itemsPerPageChange.emit(this.itemsPerPage);
+    this.currentPageNumber = 1;
   }
 
   scrollToTop() {

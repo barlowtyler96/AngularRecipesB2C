@@ -8,31 +8,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.FullRecipeComponent = void 0;
 var core_1 = require("@angular/core");
+var bootstrap_1 = require("bootstrap");
 var FullRecipeComponent = /** @class */ (function () {
-    function FullRecipeComponent(recipesService) {
-        this.recipesService = recipesService;
+    function FullRecipeComponent() {
         this.ingredientArray1 = [];
         this.ingredientArray2 = [];
     }
-    FullRecipeComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.recipesService.getFullRecipeById(this.recipeId)
-            .subscribe(function (data) {
-            _this.fullRecipe = data;
-            var midpoint = Math.ceil(data.ingredients.length / 2);
-            _this.ingredientArray1 = data.ingredients.slice(0, midpoint);
-            _this.ingredientArray2 = data.ingredients.slice(midpoint);
-            setTimeout(function () {
-                var recipeElement = document.getElementById("fullRecipe");
-                if (recipeElement) {
-                    recipeElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            }, 150);
-        });
+    FullRecipeComponent.prototype.openModal = function () {
+        if (!this.modal) {
+            this.modal = new bootstrap_1.Modal(this.modalElement.nativeElement);
+        }
+        this.modal.show();
+    };
+    FullRecipeComponent.prototype.closeModal = function () {
+        var _a;
+        (_a = this.modal) === null || _a === void 0 ? void 0 : _a.hide();
     };
     __decorate([
         core_1.Input()
-    ], FullRecipeComponent.prototype, "recipeId");
+    ], FullRecipeComponent.prototype, "fullRecipe");
+    __decorate([
+        core_1.Input()
+    ], FullRecipeComponent.prototype, "ingredientArray1");
+    __decorate([
+        core_1.Input()
+    ], FullRecipeComponent.prototype, "ingredientArray2");
+    __decorate([
+        core_1.ViewChild('modalElement')
+    ], FullRecipeComponent.prototype, "modalElement");
     FullRecipeComponent = __decorate([
         core_1.Component({
             selector: 'app-full-recipe',

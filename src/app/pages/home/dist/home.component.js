@@ -15,16 +15,16 @@ var HomeComponent = /** @class */ (function () {
         this.itemsPerPage = 8;
     }
     HomeComponent.prototype.ngOnInit = function () {
-        this.loadData(this.currentPage); // Initial data load
+        this.loadData(this.currentPage);
         this.headerTitle = "Recently Added";
     };
     HomeComponent.prototype.loadData = function (page) {
-        this.currentPage = page; // Update the currentPage property
+        this.currentPage = page;
         this.recipePagination$ = this.recipesService.getRecentRecipePagination(page, this.itemsPerPage);
     };
     HomeComponent.prototype.onItemsPerPageChange = function (newItemsPerPage) {
-        this.itemsPerPage = newItemsPerPage; // Update the itemsPerPage property
-        this.loadData(1); // Reload data with the new itemsPerPage
+        this.itemsPerPage = newItemsPerPage;
+        this.loadData(1);
     };
     HomeComponent = __decorate([
         core_1.Component({

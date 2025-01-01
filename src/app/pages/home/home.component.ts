@@ -16,17 +16,17 @@ export class HomeComponent implements OnInit {
   constructor(private recipesService: RecipesService) { }
 
   ngOnInit() {
-    this.loadData(this.currentPage); // Initial data load
+    this.loadData(this.currentPage);
     this.headerTitle = "Recently Added";
   }
 
   loadData(page: number) {
-    this.currentPage = page; // Update the currentPage property
+    this.currentPage = page;
     this.recipePagination$ = this.recipesService.getRecentRecipePagination(page, this.itemsPerPage);
   }
 
   onItemsPerPageChange(newItemsPerPage: number) {
-    this.itemsPerPage = newItemsPerPage; // Update the itemsPerPage property
-    this.loadData(1); // Reload data with the new itemsPerPage
+    this.itemsPerPage = newItemsPerPage;
+    this.loadData(1);
   }
 }

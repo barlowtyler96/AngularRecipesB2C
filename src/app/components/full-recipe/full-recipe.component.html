@@ -1,4 +1,52 @@
-<div id="fullRecipe" *ngIf="fullRecipe" class="container full-recipe-display mt-5">
+<div #modalElement class="modal fade my-2" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div *ngIf="fullRecipe != undefined" class="modal-content">
+            <div  class="modal-header">
+                <div class="col-12 text-center fs-2 mt-4">
+                    {{ fullRecipe.name }}
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    
+                </div>
+                <div class="row">
+                    <div class="offset-lg-1 col-lg-5 mt-5 text-center mb-5">
+                        {{fullRecipe.instructions}} <br>
+                        <img class="mt-4 full-recipe-image" src="{{fullRecipe.imageUrl}}">
+                    </div>
+                    <div class="offset-lg-1 col-lg-2 col-sm-12 mt-5">
+                        <ul *ngFor="let ingredient of ingredientArray1" class="list-unstyled">
+                            <li class="ingredient-display p-2 bg-white">
+                                {{ ingredient.amount }} {{ ingredient.unit }} {{ ingredient.name }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-sm-12 mt-md-5">
+                        <ul *ngFor="let ingredient of ingredientArray2" class="list-unstyled">
+                            <li class="ingredient-display p-2">
+                                {{ ingredient.amount }} {{ ingredient.unit }} {{ ingredient.name }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div id="fullRecipe" *ngIf="fullRecipe" class="container full-recipe-display mt-5">
     <div class="row">
         <div class="col-12 text-center fs-2 mt-4">
             {{ fullRecipe.name }}
@@ -24,5 +72,4 @@
             </ul>
         </div>
     </div>
-</div>
-
+</div> -->

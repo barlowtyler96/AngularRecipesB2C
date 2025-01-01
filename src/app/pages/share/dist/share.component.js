@@ -10,8 +10,7 @@ exports.ShareComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var ShareComponent = /** @class */ (function () {
-    function ShareComponent(usersService, recipesService, fb) {
-        this.usersService = usersService;
+    function ShareComponent(recipesService, fb) {
         this.recipesService = recipesService;
         this.fb = fb;
         this.recipeSubmitted = false;
@@ -55,16 +54,16 @@ var ShareComponent = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    ShareComponent.prototype.getIngredient = function (index) {
-        return this.recipeIngredients.at(index).get('ingredientName');
-    };
-    Object.defineProperty(ShareComponent.prototype, "recipeIngredients", {
+    Object.defineProperty(ShareComponent.prototype, "ingredients", {
         get: function () {
-            return this.recipeForm.get('recipeIngredients');
+            return this.recipeForm.get('ingredients');
         },
         enumerable: false,
         configurable: true
     });
+    ShareComponent.prototype.getIngredient = function (index) {
+        return this.ingredients.at(index).get('name');
+    };
     ShareComponent.prototype.submit = function () {
         if (this.recipeForm.valid) {
             if (this.selectedFile != null) {
@@ -79,13 +78,8 @@ var ShareComponent = /** @class */ (function () {
         var _this = this;
         this.recipesService.postSharedRecipe(this.recipeForm)
             .subscribe(function (res) {
-            _this.createdRecipeId = res;
-            _this.recipesService
-                .getFullRecipeById(_this.createdRecipeId)
-                .subscribe(function (res) {
-                _this.createdRecipes.data.push(res);
-                _this.recipeSubmitted = true;
-            });
+            _this.createdRecipes.data.push(res);
+            _this.recipeSubmitted = true;
         });
     };
     ShareComponent.prototype.postImageAndRecipe = function () {
@@ -101,13 +95,8 @@ var ShareComponent = /** @class */ (function () {
             _this.recipesService
                 .postSharedRecipe(_this.recipeForm)
                 .subscribe(function (res) {
-                _this.createdRecipeId = res;
-                _this.recipesService
-                    .getFullRecipeById(_this.createdRecipeId)
-                    .subscribe(function (res) {
-                    _this.createdRecipes.data.push(res);
-                    _this.recipeSubmitted = true;
-                });
+                _this.createdRecipes.data.push(res);
+                _this.recipeSubmitted = true;
             });
         });
     };
@@ -126,15 +115,15 @@ var ShareComponent = /** @class */ (function () {
             this.selectedFile = inputElement.files[0];
         }
     };
-    ShareComponent.prototype.addRecipeIngredient = function () {
-        this.recipeIngredients.push(this.fb.group({
-            ingredientName: [''],
+    ShareComponent.prototype.addIngredient = function () {
+        this.ingredients.push(this.fb.group({
+            name: [''],
             amount: [0],
             unit: ['']
         }));
     };
-    ShareComponent.prototype.deleteRecipeIngredient = function (index) {
-        this.recipeIngredients.removeAt(index);
+    ShareComponent.prototype.deleteIngredient = function (index) {
+        this.ingredients.removeAt(index);
     };
     ShareComponent.prototype.generateNewFileName = function (fileExtension) {
         var newFileName = crypto.randomUUID();

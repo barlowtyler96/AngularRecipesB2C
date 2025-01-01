@@ -43,8 +43,8 @@
             </div>
         </div>
 
-        <div formArrayName="recipeIngredients">
-            <div *ngFor="let ingredient of recipeIngredients.controls; let i = index">
+        <div formArrayName="ingredients">
+            <div *ngFor="let ingredient of ingredients.controls; let i = index">
                 <div [formGroupName]="i" class="row">
                     <div class="form-group col-2 mx-md-0">
                         <label for="amount{{i}}">Amount: </label>
@@ -55,9 +55,9 @@
                         <input type="text" id="unit{{i}}" class="form-control" formControlName="unit" />
                     </div>
                     <div class="form-group col-4">
-                        <label for="ingredientName{{i}}">Ingredient: </label>
-                        <input type="text" id="ingredientName{{i}}" class="form-control"
-                            formControlName="ingredientName" />
+                        <label for="name{{i}}">Ingredient: </label>
+                        <input type="text" id="name{{i}}" class="form-control"
+                            formControlName="name" />
                         <div *ngIf="getIngredient(i)?.invalid && (getIngredient(i)?.dirty || getIngredient(i)?.touched)"
                             class="alert alert-danger mt-1">
                             <div *ngIf="getIngredient(i)?.errors?.['required']">
@@ -67,17 +67,17 @@
                     </div>
                     <div class="form-group col-1">
                         <br>
-                        <button class="btn btn-warning" type="button" (click)="deleteRecipeIngredient(i)">
+                        <button class="btn btn-warning" type="button" (click)="deleteIngredient(i)">
                             <i class="fa-solid fa-square-xmark fa-sm"></i>
                         </button>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="form-group">
-                    <button class="btn btn-dark my-2 mb-3" type="button" (click)="addRecipeIngredient()">+ Add another
+                    <button class="btn btn-dark my-2 mb-3" type="button" (click)="addIngredient()">+ Add another
                         ingredient</button>
                 </div>
                 <div>
@@ -90,8 +90,6 @@
     </form>
     <div *ngIf="recipeSubmitted">
         <div class="alert alert-success">Your recipe was submitted. It will be reviewed before being permanently added
-            to
-            the site.</div>
-        <app-recipe-cards [recipes]="this.createdRecipes.data"></app-recipe-cards>
+            to the site.</div>
     </div>
 </div>

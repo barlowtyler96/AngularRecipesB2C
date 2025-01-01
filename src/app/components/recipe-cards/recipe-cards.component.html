@@ -1,3 +1,4 @@
+<app-full-recipe [fullRecipe]="this.selectedRecipe" [ingredientArray1]="this.ingredientArray1" [ingredientArray2]="this.ingredientArray2"></app-full-recipe>
 <div class="mx-md-5 mx-3">
     <div class="row row-cols-1 row-cols-md-2 g-4 mb-2 mx-xl-4">
         <div *ngFor="let recipe of recipes;" class="col-xxl-3 col-sm-6">
@@ -9,7 +10,7 @@
                 </div>
                 <div class="card-footer">
                     <div *ngIf="isSignedIn; else elseBlock">
-                        <button (click)="showFullRecipe(recipe.id)" class="btn btn-primary mx-1 border-1 border-black">
+                        <button (click)="openModal(recipe)" class="btn btn-primary mx-1 border-1 border-black">
                             View Recipe
                         </button>
                         <button (click)="postUserFavorite(recipe.id, true)"
@@ -25,7 +26,7 @@
                         </ng-template>
                     </div>
                     <ng-template #elseBlock>
-                        <button (click)="showFullRecipe(recipe.id)" class="btn btn-primary mx-1 border-1 border-black">
+                        <button (click)="openModal(recipe)" class="btn btn-primary mx-1 border-1 border-black">
                             View Recipe
                         </button>
                         <button (click)="postUserFavorite(recipe.id, false)"
@@ -35,14 +36,6 @@
                     </ng-template>
                 </div>
             </div>
-        </div>
-    </div>
-    <div *ngIf="isShowingRecipe">
-        <app-full-recipe [recipeId]="selectedRecipeId"></app-full-recipe>
-        <div class="text-center">
-            <button (click)="isShowingRecipe = false" class="btn btn-warning mt-4">
-                Hide
-            </button>
         </div>
     </div>
 </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipePagination } from 'src/app/models/recipe';
 import { RecipesService } from 'src/app/services/recipes.service';
-import { UsersService } from 'src/app/services/users.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Recipe } from 'src/app/models/recipe';
 
@@ -11,7 +10,6 @@ import { Recipe } from 'src/app/models/recipe';
   styleUrls: ['./share.component.scss']
 })
 export class ShareComponent implements OnInit {
-  createdRecipeId!: number;
   createdRecipe!: Recipe;
   createdRecipes!: RecipePagination;
   recipeForm!: FormGroup;
@@ -19,7 +17,6 @@ export class ShareComponent implements OnInit {
   selectedFile: File | null = null;
   headerTitle!: string;
   constructor(
-    private usersService: UsersService,
     private recipesService: RecipesService,
     private fb: FormBuilder) { }
 
@@ -47,14 +44,15 @@ export class ShareComponent implements OnInit {
       data: []
     }
   }
+
   get name() { return this.recipeForm.get('name'); }
   get description() { return this.recipeForm.get('description'); }
   get instructions() { return this.recipeForm.get('instructions'); }
-  getIngredient(index: number) {
-    return this.recipeIngredients.at(index).get('ingredientName');
+  get ingredients() {
+    return this.recipeForm.get('ingredients') as FormArray;
   }
-  get recipeIngredients() {
-    return this.recipeForm.get('recipeIngredients') as FormArray;
+  getIngredient(index: number) {
+    return this.ingredients.at(index).get('name');
   }
 
   submit() {
@@ -69,14 +67,9 @@ export class ShareComponent implements OnInit {
 
   postRecipeOnly() {
     this.recipesService.postSharedRecipe(this.recipeForm)
-      .subscribe((res: number) => {
-        this.createdRecipeId = res;
-        this.recipesService
-          .getFullRecipeById(this.createdRecipeId)
-          .subscribe((res: Recipe) => {
-            this.createdRecipes.data.push(res)
-            this.recipeSubmitted = true;
-          });
+      .subscribe((res: Recipe) => {
+        this.createdRecipes.data.push(res)
+        this.recipeSubmitted = true;
       })
   }
 
@@ -93,14 +86,9 @@ export class ShareComponent implements OnInit {
       .subscribe(res => {
         this.recipesService
           .postSharedRecipe(this.recipeForm)
-          .subscribe((res: number) => {
-            this.createdRecipeId = res;
-            this.recipesService
-              .getFullRecipeById(this.createdRecipeId)
-              .subscribe((res: Recipe) => {
-                this.createdRecipes.data.push(res)
-                this.recipeSubmitted = true;
-              });
+          .subscribe((res: Recipe) => {
+            this.createdRecipes.data.push(res)
+            this.recipeSubmitted = true;
           })
       })
   }
@@ -120,16 +108,16 @@ export class ShareComponent implements OnInit {
     }
   }
 
-  addRecipeIngredient() {
-    this.recipeIngredients.push(this.fb.group({
-      ingredientName: [''],
+  addIngredient() {
+    this.ingredients.push(this.fb.group({
+      name: [''],
       amount: [0],
       unit: ['']
     }));
   }
 
-  deleteRecipeIngredient(index: number) {
-    this.recipeIngredients.removeAt(index);
+  deleteIngredient(index: number) {
+    this.ingredients.removeAt(index);
   }
 
   generateNewFileName(fileExtension: string) {
