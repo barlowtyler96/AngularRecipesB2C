@@ -14,7 +14,7 @@
     been pinged in one hour. Azure's cloud services must reboot.
   </div>
 </ng-template>
-<div *ngIf="(recipePagination$ | async) as recipePagination; else loading">
+<div *ngIf="(recipePagination$ | async) as recipePagination">
 
   <app-pagination [totalCount]="recipePagination.totalCount" [currentPageNumber]="recipePagination.currentPageNumber"
     [itemsPerPage]="recipePagination.pageSize" [totalPages]="recipePagination.totalPages"
