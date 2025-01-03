@@ -27,8 +27,8 @@ var UsersService = /** @class */ (function () {
         return this.http["delete"](url)
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
-    UsersService.prototype.addUserFavorite = function (recipeId) {
-        var url = environment_1.environment.apiBaseUrl + "Users/favorite/" + recipeId;
+    UsersService.prototype.postUserFavorite = function (id) {
+        var url = environment_1.environment.apiBaseUrl + "Users/favorite/" + id;
         return this.http.post(url, {})
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };

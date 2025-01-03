@@ -15,7 +15,7 @@
                         </button>
                         <button (click)="postUserFavorite(recipe.id, true)"
                             class="btn btn-primary border border-black"
-                            *ngIf="userFavoriteIds.includes(recipe.id); else elseBlock2">
+                            *ngIf="recipe.isFavorited; else elseBlock2">
                             <i class="fa-solid fa-heart"></i>
                         </button>
                         <ng-template #elseBlock2>

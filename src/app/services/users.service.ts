@@ -36,8 +36,8 @@ export class UsersService {
     );
   }
 
-  public addUserFavorite(recipeId: number): Observable<any> {
-    const url = `${environment.apiBaseUrl}Users/favorite/${recipeId}`;
+  public postUserFavorite(id: number): Observable<any> {
+    const url = `${environment.apiBaseUrl}Users/favorite/${id}`;
     return this.http.post(url, {})
     .pipe(
       retry(3),

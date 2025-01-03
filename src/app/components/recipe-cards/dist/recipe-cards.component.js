@@ -16,7 +16,6 @@ var RecipeCardsComponent = /** @class */ (function () {
         this.usersService = usersService;
         this.authService = authService;
         this.msalBroadcastService = msalBroadcastService;
-        this.userFavoriteIds = [];
         this.isSignedIn = false;
         this.ingredientArray1 = [];
         this.ingredientArray2 = [];
@@ -33,16 +32,6 @@ var RecipeCardsComponent = /** @class */ (function () {
             .subscribe(function () {
             _this.setSignedInStatus();
         });
-        if (this.isSignedIn) {
-            this.usersService.getUserFavoriteIds().subscribe({
-                next: function (favoriteIds) {
-                    _this.userFavoriteIds = favoriteIds;
-                },
-                error: function (error) {
-                    console.error('Error fetching user favorite IDs:', error);
-                }
-            });
-        }
     };
     RecipeCardsComponent.prototype.setSignedInStatus = function () {
         this.isSignedIn = this.authService.instance.getAllAccounts().length > 0;
@@ -50,14 +39,9 @@ var RecipeCardsComponent = /** @class */ (function () {
     RecipeCardsComponent.prototype.postUserFavorite = function (recipeId, isFavorite) {
         if (isFavorite) {
             this.usersService.deleteUserFavorite(recipeId).subscribe({});
-            var index = this.userFavoriteIds.indexOf(recipeId);
-            if (index !== -1) {
-                this.userFavoriteIds.splice(index, 1);
-            }
         }
         else if (!isFavorite) {
-            this.usersService.addUserFavorite(recipeId).subscribe({});
-            this.userFavoriteIds.push(recipeId);
+            this.usersService.postUserFavorite(recipeId).subscribe({});
         }
     };
     RecipeCardsComponent.prototype.openModal = function (recipe) {

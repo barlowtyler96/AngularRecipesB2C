@@ -16,7 +16,6 @@ export class RecipeCardsComponent implements OnInit {
   @Input() recipes!: Recipe[];
   @ViewChild(FullRecipeComponent) modalComponent!: FullRecipeComponent;
 
-  userFavoriteIds: number[] = [];
   selectedRecipe?: Recipe;
   isSignedIn: boolean = false;
   ingredientArray1: Ingredient[] = [];
@@ -40,17 +39,6 @@ export class RecipeCardsComponent implements OnInit {
       .subscribe(() => {
         this.setSignedInStatus();
       })
-
-    if (this.isSignedIn) {
-      this.usersService.getUserFavoriteIds().subscribe({
-        next: (favoriteIds: number[]) => {
-          this.userFavoriteIds = favoriteIds;
-        },
-        error: (error: any) => {
-          console.error('Error fetching user favorite IDs:', error);
-        }
-      });
-    }
   }
 
   setSignedInStatus() {
@@ -61,14 +49,10 @@ export class RecipeCardsComponent implements OnInit {
     if (isFavorite) {
       this.usersService.deleteUserFavorite(recipeId).subscribe({
       });
-      const index = this.userFavoriteIds.indexOf(recipeId);
-      if (index !== -1) {
-        this.userFavoriteIds.splice(index, 1);
-      }
+      
     } else if (!isFavorite) {
-      this.usersService.addUserFavorite(recipeId).subscribe({
+      this.usersService.postUserFavorite(recipeId).subscribe({
       });
-      this.userFavoriteIds.push(recipeId);
     }
   }
 
