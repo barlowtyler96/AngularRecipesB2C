@@ -14,7 +14,7 @@ export class RecipesService {
   constructor(private http: HttpClient) { }
 
   public getRecentRecipePagination(page: number, pageSize:number): Observable<RecipePagination> {
-    return this.http.get<RecipePagination>(`${environment.apiBaseUrl}recipes?page=${page}&pageSize=${pageSize}`)
+    return this.http.get<RecipePagination>(`${environment.apiBaseUrl}recipes/recent?page=${page}&pageSize=${pageSize}`)
       .pipe(
         retry(3),
         catchError(this.handleError)

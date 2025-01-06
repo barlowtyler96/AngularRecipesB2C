@@ -15,7 +15,7 @@ var RecipesService = /** @class */ (function () {
         this.http = http;
     }
     RecipesService.prototype.getRecentRecipePagination = function (page, pageSize) {
-        return this.http.get(environment_1.environment.apiBaseUrl + "recipes?page=" + page + "&pageSize=" + pageSize)
+        return this.http.get(environment_1.environment.apiBaseUrl + "recipes/recent?page=" + page + "&pageSize=" + pageSize)
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
     RecipesService.prototype.getRecipePaginationByKeyword = function (keyword, page, pageSize) {

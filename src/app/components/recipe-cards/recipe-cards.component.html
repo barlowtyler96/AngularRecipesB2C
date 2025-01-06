@@ -9,31 +9,16 @@
                     <p class="card-text">{{ recipe.description | truncate: 140 }}</p>
                 </div>
                 <div class="card-footer">
-                    <div *ngIf="isSignedIn; else elseBlock">
+                    <div>
                         <button (click)="openModal(recipe)" class="btn btn-primary mx-1 border-1 border-black">
                             View Recipe
                         </button>
-                        <button (click)="postUserFavorite(recipe.id, true)"
-                            class="btn btn-primary border border-black"
-                            *ngIf="recipe.isFavorited; else elseBlock2">
-                            <i class="fa-solid fa-heart"></i>
-                        </button>
-                        <ng-template #elseBlock2>
-                            <button (click)="postUserFavorite(recipe.id, false)"
-                                class="btn btn-primary border border-black">
-                                <i class="fa-regular fa-heart"></i>
-                            </button>
-                        </ng-template>
-                    </div>
-                    <ng-template #elseBlock>
-                        <button (click)="openModal(recipe)" class="btn btn-primary mx-1 border-1 border-black">
-                            View Recipe
-                        </button>
-                        <button (click)="postUserFavorite(recipe.id, false)"
+                        <button (click)="toggleUserFavorite(recipe)"
                             class="btn btn-primary border border-black">
-                            <i class="fa-regular fa-heart"></i>
+                            <i [ngClass]="recipe.isFavorited ? 'fas fa-heart' : 'far fa-heart'"></i>
                         </button>
-                    </ng-template>
+                    </div>
+                    
                 </div>
             </div>
         </div>

@@ -45,15 +45,39 @@ export class RecipeCardsComponent implements OnInit {
     this.isSignedIn = this.authService.instance.getAllAccounts().length > 0;
   }
 
-  postUserFavorite(recipeId: number, isFavorite: boolean) {
-    if (isFavorite) {
-      this.usersService.deleteUserFavorite(recipeId).subscribe({
-      });
-      
-    } else if (!isFavorite) {
-      this.usersService.postUserFavorite(recipeId).subscribe({
-      });
+  toggleUserFavorite(recipe: Recipe) {
+    const previousState = recipe.isFavorited;
+    recipe.isFavorited = !recipe.isFavorited;
+
+    if (recipe.isFavorited) {
+      this.addToFavorites(recipe);
+    } else {
+      this.removeFromFavorites(recipe);
     }
+  }
+
+  addToFavorites(recipe: Recipe) {
+    this.usersService.postUserFavorite(recipe.id).subscribe({
+      next: (response) => {
+        // Successfully added to favorites
+      },
+      error: (error) => {
+        console.error('Error adding to favorites', error);
+        recipe.isFavorited = false; // Revert to previous state on error
+      }
+    });
+  }
+
+  removeFromFavorites(recipe: Recipe) {
+    this.usersService.deleteUserFavorite(recipe.id).subscribe({
+      next: (response) => {
+        // Successfully removed from favorites
+      },
+      error: (error) => {
+        console.error('Error removing from favorites', error);
+        recipe.isFavorited = true; // Revert to previous state on error
+      }
+    });
   }
 
   openModal(recipe: Recipe) {
