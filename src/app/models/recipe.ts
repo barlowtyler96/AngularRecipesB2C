@@ -1,4 +1,5 @@
 import { Ingredient } from "./ingredient";
+import { User } from "./user";
 
 export interface RecipePagination {
     totalCount: number;
@@ -14,6 +15,7 @@ export interface RecipePagination {
     description: string;
     instructions: string;
     imageUrl: string;
+    createdBy: User;
     ingredients: Ingredient[];
     isFavorited: boolean;
   }

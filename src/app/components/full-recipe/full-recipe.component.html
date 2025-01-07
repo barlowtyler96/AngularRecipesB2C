@@ -8,9 +8,6 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    
-                </div>
-                <div class="row">
                     <div class="offset-lg-1 col-lg-5 mt-5 text-center mb-5">
                         {{fullRecipe.instructions}} <br>
                         <img class="mt-4 full-recipe-image" src="{{fullRecipe.imageUrl}}">
@@ -31,7 +28,10 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer d-flex justify-content-between w-100">
+                <div class="fst-italic">
+                    Shared By: {{fullRecipe.createdBy.firstName}} {{fullRecipe.createdBy.lastName}}
+                </div>
                 <button type="button" class="btn btn-secondary" (click)="closeModal()">
                     Close
                 </button>
