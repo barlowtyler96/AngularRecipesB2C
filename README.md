@@ -20,9 +20,6 @@
 ## Sample Video: 
 [![Sample Video](https://img.youtube.com/vi/gd2efZiH1UY/0.jpg)](https://www.youtube.com/watch?v=gd2efZiH1UY)
 
-## Database Schema
-![](ReadMeImages/culinaryshares-entity-relationship.PNG)
-
 ## Want to contribute?
 1. Open Git Bash to the location you wish to clone the repository.
 2. Run the following command:
