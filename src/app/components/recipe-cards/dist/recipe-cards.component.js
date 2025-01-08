@@ -37,9 +37,7 @@ var RecipeCardsComponent = /** @class */ (function () {
         this.isSignedIn = this.authService.instance.getAllAccounts().length > 0;
     };
     RecipeCardsComponent.prototype.toggleUserFavorite = function (recipe) {
-        var previousState = recipe.isFavorited;
-        recipe.isFavorited = !recipe.isFavorited;
-        if (recipe.isFavorited) {
+        if (!recipe.isFavorited) {
             this.addToFavorites(recipe);
         }
         else {
@@ -49,22 +47,20 @@ var RecipeCardsComponent = /** @class */ (function () {
     RecipeCardsComponent.prototype.addToFavorites = function (recipe) {
         this.usersService.postUserFavorite(recipe.id).subscribe({
             next: function (response) {
-                // Successfully added to favorites
+                recipe.isFavorited = true;
             },
             error: function (error) {
                 console.error('Error adding to favorites', error);
-                recipe.isFavorited = false; // Revert to previous state on error
             }
         });
     };
     RecipeCardsComponent.prototype.removeFromFavorites = function (recipe) {
         this.usersService.deleteUserFavorite(recipe.id).subscribe({
             next: function (response) {
-                // Successfully removed from favorites
+                recipe.isFavorited = false;
             },
             error: function (error) {
                 console.error('Error removing from favorites', error);
-                recipe.isFavorited = true; // Revert to previous state on error
             }
         });
     };
