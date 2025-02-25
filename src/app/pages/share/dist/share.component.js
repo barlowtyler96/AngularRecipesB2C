@@ -31,13 +31,6 @@ var ShareComponent = /** @class */ (function () {
                 })
             ])
         });
-        this.createdRecipes = {
-            totalCount: 0,
-            pageSize: 0,
-            currentPageNumber: 0,
-            totalPages: 0,
-            data: []
-        };
     };
     Object.defineProperty(ShareComponent.prototype, "name", {
         get: function () { return this.recipeForm.get('name'); },
@@ -66,21 +59,8 @@ var ShareComponent = /** @class */ (function () {
     };
     ShareComponent.prototype.submit = function () {
         if (this.recipeForm.valid) {
-            if (this.selectedFile != null) {
-                this.postImageAndRecipe();
-            }
-            else {
-                this.postRecipeOnly();
-            }
+            this.postImageAndRecipe();
         }
-    };
-    ShareComponent.prototype.postRecipeOnly = function () {
-        var _this = this;
-        this.recipesService.postSharedRecipe(this.recipeForm)
-            .subscribe(function (res) {
-            _this.createdRecipes.data.push(res);
-            _this.recipeSubmitted = true;
-        });
     };
     ShareComponent.prototype.postImageAndRecipe = function () {
         var _this = this;
@@ -95,7 +75,6 @@ var ShareComponent = /** @class */ (function () {
             _this.recipesService
                 .postSharedRecipe(_this.recipeForm)
                 .subscribe(function (res) {
-                _this.createdRecipes.data.push(res);
                 _this.recipeSubmitted = true;
             });
         });

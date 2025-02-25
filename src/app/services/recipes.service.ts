@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { RecipePagination } from '../models/recipe'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
-import { Recipe } from '../models/recipe';
+import { Recipe, RecipePagination } from '../models/recipe';
 import { catchError, retry, throwError } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 
@@ -46,13 +45,14 @@ export class RecipesService {
   }
 
   public postSharedRecipe(recipeForm: FormGroup): Observable<Recipe> {
-    const recipe: Recipe = recipeForm.value
-    return this.http.post<Recipe>(`${environment.apiBaseUrl}Recipes/share`, recipe)
-    .pipe(
-      retry(3),
-      catchError(this.handleError)
-    );
-  }
+    const recipeData: Recipe = recipeForm.getRawValue();
+
+    return this.http.post<Recipe>(`${environment.apiBaseUrl}Recipes/share`, recipeData)
+      .pipe(
+        retry(3),
+        catchError(this.handleError)
+      );
+}
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Recipe } from 'src/app/models/recipe';
+import { Recipe, RecipePagination } from 'src/app/models/recipe';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -9,17 +9,24 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./your-shares.component.scss']
 })
 export class YourSharesComponent implements OnInit {
-  recipes$!: Observable<Recipe[]>;
+  recipePagination$!: Observable<RecipePagination>;
+  currentPage: number = 1;
+  itemsPerPage: number = 8;
   headerTitle!: string;
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-    this.loadData();
+    this.loadData(1);
     this.headerTitle = "Your Shares"
   }
 
-  loadData() {
-    this.recipes$ = this.usersService.getUserCreatedRecipes();
+  loadData(page: number) {
+    this.recipePagination$ = this.usersService.getUserCreatedRecipes(this.currentPage, this.itemsPerPage);
+  }
+
+  onItemsPerPageChange(newItemsPerPage: number) {
+    this.itemsPerPage = newItemsPerPage;
+    this.loadData(1);
   }
 }

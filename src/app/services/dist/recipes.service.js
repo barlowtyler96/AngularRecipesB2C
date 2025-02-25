@@ -31,8 +31,8 @@ var RecipesService = /** @class */ (function () {
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
     RecipesService.prototype.postSharedRecipe = function (recipeForm) {
-        var recipe = recipeForm.value;
-        return this.http.post(environment_1.environment.apiBaseUrl + "Recipes/share", recipe)
+        var recipeData = recipeForm.getRawValue();
+        return this.http.post(environment_1.environment.apiBaseUrl + "Recipes/share", recipeData)
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
     RecipesService.prototype.handleError = function (error) {

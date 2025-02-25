@@ -1,6 +1,10 @@
 <app-header [title]="headerTitle"></app-header>
 <div class="container-fluid">
-    <div *ngIf="(recipes$ | async) as recipes">
-        <app-recipe-cards [recipes]="recipes"></app-recipe-cards>
+    <div *ngIf="(recipePagination$ | async) as recipePagination">
+        <app-recipe-cards [recipes]="recipePagination.data"></app-recipe-cards>
+        <app-pagination [totalCount]="recipePagination.totalCount" [currentPageNumber]="recipePagination.currentPageNumber"
+    [itemsPerPage]="recipePagination.pageSize" [totalPages]="recipePagination.totalPages"
+    (pageChange)="loadData($event)" (itemsPerPageChange)="onItemsPerPageChange($event)">
+  </app-pagination>
     </div>
 </div>

@@ -11,13 +11,19 @@ var core_1 = require("@angular/core");
 var YourSharesComponent = /** @class */ (function () {
     function YourSharesComponent(usersService) {
         this.usersService = usersService;
+        this.currentPage = 1;
+        this.itemsPerPage = 8;
     }
     YourSharesComponent.prototype.ngOnInit = function () {
-        this.loadData();
+        this.loadData(1);
         this.headerTitle = "Your Shares";
     };
-    YourSharesComponent.prototype.loadData = function () {
-        this.recipes$ = this.usersService.getUserCreatedRecipes();
+    YourSharesComponent.prototype.loadData = function (page) {
+        this.recipePagination$ = this.usersService.getUserCreatedRecipes(this.currentPage, this.itemsPerPage);
+    };
+    YourSharesComponent.prototype.onItemsPerPageChange = function (newItemsPerPage) {
+        this.itemsPerPage = newItemsPerPage;
+        this.loadData(1);
     };
     YourSharesComponent = __decorate([
         core_1.Component({

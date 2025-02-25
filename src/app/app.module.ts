@@ -26,6 +26,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { FullRecipeComponent } from './components/full-recipe/full-recipe.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component'
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -62,8 +63,13 @@ import { HeaderComponent } from './components/header/header.component'
       {
         // The protected resource mapping maps the web API with the corresponding app scopes.
         interactionType: InteractionType.Redirect,
-        protectedResourceMap: new Map([
-          [protectedResources.culinarySharesApi.endpoint, protectedResources.culinarySharesApi.scopes]
+        protectedResourceMap: new Map<string, Array<string>>([
+          // All endpoints under Users require authentication
+          [`${environment.apiBaseUrl}Users`, protectedResources.culinarySharesApi.scopes],
+          
+          // Only specific endpoints in Recipes require authentication
+          [`${environment.apiBaseUrl}Recipes/upload`, protectedResources.culinarySharesApi.scopes],
+          [`${environment.apiBaseUrl}Recipes/share`, protectedResources.culinarySharesApi.scopes],
         ])
       })
   ],

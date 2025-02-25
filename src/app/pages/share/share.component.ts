@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipePagination } from 'src/app/models/recipe';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Recipe } from 'src/app/models/recipe';
+import { Recipe, RecipePagination } from 'src/app/models/recipe';
 
 @Component({
   selector: 'app-share',
@@ -11,7 +10,6 @@ import { Recipe } from 'src/app/models/recipe';
 })
 export class ShareComponent implements OnInit {
   createdRecipe!: Recipe;
-  createdRecipes!: RecipePagination;
   recipeForm!: FormGroup;
   recipeSubmitted: boolean = false;
   selectedFile: File | null = null;
@@ -35,14 +33,6 @@ export class ShareComponent implements OnInit {
         })
       ])
     });
-
-    this.createdRecipes = {
-      totalCount: 0,
-      pageSize: 0,
-      currentPageNumber: 0,
-      totalPages: 0,
-      data: []
-    }
   }
 
   get name() { return this.recipeForm.get('name'); }
@@ -57,21 +47,9 @@ export class ShareComponent implements OnInit {
 
   submit() {
     if (this.recipeForm.valid) {
-      if (this.selectedFile != null) {
-        this.postImageAndRecipe();
-      } else {
-        this.postRecipeOnly();
-      }
-    }
+      this.postImageAndRecipe();
   }
-
-  postRecipeOnly() {
-    this.recipesService.postSharedRecipe(this.recipeForm)
-      .subscribe((res: Recipe) => {
-        this.createdRecipes.data.push(res)
-        this.recipeSubmitted = true;
-      })
-  }
+}
 
   postImageAndRecipe() {
     const baseBlobUrl = 'https://recipesvaultimages.blob.core.windows.net/recipevaultimages/';
@@ -87,7 +65,6 @@ export class ShareComponent implements OnInit {
         this.recipesService
           .postSharedRecipe(this.recipeForm)
           .subscribe((res: Recipe) => {
-            this.createdRecipes.data.push(res)
             this.recipeSubmitted = true;
           })
       })

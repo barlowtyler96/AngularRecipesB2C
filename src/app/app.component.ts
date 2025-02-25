@@ -14,7 +14,7 @@ import { InteractionStatus } from '@azure/msal-browser';
   ]
 })
 export class AppComponent implements OnInit {
-  title = 'AngularRecipesB2C';
+  title = 'CulinaryShares';
   loginDisplay = false;
   private readonly _destroying$ = new Subject<void>();
 

@@ -18,8 +18,8 @@ var UsersService = /** @class */ (function () {
         return this.http.get(environment_1.environment.apiBaseUrl + "Users/favoritesIds")
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
-    UsersService.prototype.getUserFavorites = function () {
-        return this.http.get(environment_1.environment.apiBaseUrl + "Users/favorites")
+    UsersService.prototype.getUserFavorites = function (page, pageSize) {
+        return this.http.get(environment_1.environment.apiBaseUrl + "Users/favorites?page=" + page + "&pageSize=" + pageSize)
             .pipe(rxjs_1.catchError(this.handleError));
     };
     UsersService.prototype.deleteUserFavorite = function (recipeId) {
@@ -32,8 +32,8 @@ var UsersService = /** @class */ (function () {
         return this.http.post(url, {})
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
-    UsersService.prototype.getUserCreatedRecipes = function () {
-        return this.http.get(environment_1.environment.apiBaseUrl + "Users/myrecipes")
+    UsersService.prototype.getUserCreatedRecipes = function (page, pageSize) {
+        return this.http.get(environment_1.environment.apiBaseUrl + "Users/myrecipes?page=" + page + "&pageSize=" + pageSize)
             .pipe(rxjs_1.retry(3), rxjs_1.catchError(this.handleError));
     };
     UsersService.prototype.handleError = function (error) {

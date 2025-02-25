@@ -32,6 +32,7 @@ var search_bar_component_1 = require("./components/search-bar/search-bar.compone
 var full_recipe_component_1 = require("./components/full-recipe/full-recipe.component");
 var animations_1 = require("@angular/platform-browser/animations");
 var header_component_1 = require("./components/header/header.component");
+var environment_1 = require("src/environments/environment");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -70,7 +71,11 @@ var AppModule = /** @class */ (function () {
                     // The protected resource mapping maps the web API with the corresponding app scopes.
                     interactionType: msal_browser_1.InteractionType.Redirect,
                     protectedResourceMap: new Map([
-                        [auth_config_1.protectedResources.culinarySharesApi.endpoint, auth_config_1.protectedResources.culinarySharesApi.scopes]
+                        // All endpoints under Users require authentication
+                        [environment_1.environment.apiBaseUrl + "Users", auth_config_1.protectedResources.culinarySharesApi.scopes],
+                        // Only specific endpoints in Recipes require authentication
+                        [environment_1.environment.apiBaseUrl + "Recipes/upload", auth_config_1.protectedResources.culinarySharesApi.scopes],
+                        [environment_1.environment.apiBaseUrl + "Recipes/share", auth_config_1.protectedResources.culinarySharesApi.scopes],
                     ])
                 })
             ],

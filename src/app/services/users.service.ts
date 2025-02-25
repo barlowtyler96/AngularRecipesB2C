@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { Recipe } from '../models/recipe';
+import { Recipe, RecipePagination } from '../models/recipe';
 import { catchError, retry, throwError } from 'rxjs';
 
 @Injectable({
@@ -20,8 +20,8 @@ export class UsersService {
     );
   }
   
-  public getUserFavorites(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${environment.apiBaseUrl}Users/favorites`)
+  public getUserFavorites(page: number, pageSize:number): Observable<RecipePagination> {
+    return this.http.get<RecipePagination>(`${environment.apiBaseUrl}Users/favorites?page=${page}&pageSize=${pageSize}`)
     .pipe(
       catchError(this.handleError)
     );
@@ -45,8 +45,8 @@ export class UsersService {
     );
   }
 
-  getUserCreatedRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${environment.apiBaseUrl}Users/myrecipes`)
+  getUserCreatedRecipes(page: number, pageSize: number): Observable<RecipePagination> {
+    return this.http.get<RecipePagination>(`${environment.apiBaseUrl}Users/myrecipes?page=${page}&pageSize=${pageSize}`)
     .pipe(
       retry(3),
       catchError(this.handleError)

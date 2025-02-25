@@ -15,7 +15,7 @@ var AppComponent = /** @class */ (function () {
     function AppComponent(broadcastService, authService) {
         this.broadcastService = broadcastService;
         this.authService = authService;
-        this.title = 'AngularRecipesB2C';
+        this.title = 'CulinaryShares';
         this.loginDisplay = false;
         this._destroying$ = new rxjs_1.Subject();
     }

@@ -11,13 +11,19 @@ var core_1 = require("@angular/core");
 var FavoritesComponent = /** @class */ (function () {
     function FavoritesComponent(usersService) {
         this.usersService = usersService;
+        this.currentPage = 1;
+        this.itemsPerPage = 8;
     }
     FavoritesComponent.prototype.ngOnInit = function () {
-        this.loadData();
+        this.loadData(this.currentPage);
         this.headerTitle = "Favorites";
     };
-    FavoritesComponent.prototype.loadData = function () {
-        this.recipes$ = this.usersService.getUserFavorites();
+    FavoritesComponent.prototype.loadData = function (page) {
+        this.recipePagination$ = this.usersService.getUserFavorites(page, this.itemsPerPage);
+    };
+    FavoritesComponent.prototype.onItemsPerPageChange = function (newItemsPerPage) {
+        this.itemsPerPage = newItemsPerPage;
+        this.loadData(1);
     };
     FavoritesComponent = __decorate([
         core_1.Component({
