@@ -16,7 +16,7 @@ var HomeComponent = /** @class */ (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         this.loadData(this.currentPage);
-        this.headerTitle = "Recently Added";
+        this.headerTitle = "Recently Shared";
     };
     HomeComponent.prototype.loadData = function (page) {
         this.currentPage = page;
